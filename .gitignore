@@ -17,3 +17,5 @@
 # Torsion Project files
 *.exports
 *.opt
+
+*.sh
