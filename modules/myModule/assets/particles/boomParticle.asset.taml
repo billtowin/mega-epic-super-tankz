@@ -1,0 +1,18 @@
+<ParticleAsset
+    AssetName="boomParticle"
+    Lifetime="1"
+    LifeMode="KILL">
+    <ParticleAssetEmitter
+        EmitterName="flames"
+        OldestInFront="1"
+        Animation="@asset=MyModule:boomAnim">
+        <ParticleAssetEmitter.Fields>
+            <Quantity
+                Keys="0 20 0.1 20 0.11 0" />
+            <Lifetime
+                Keys="0 1" />
+            <Speed
+                Keys="0 0" />
+        </ParticleAssetEmitter.Fields>
+    </ParticleAssetEmitter>
+</ParticleAsset>

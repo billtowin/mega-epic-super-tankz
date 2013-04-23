@@ -1,0 +1,4 @@
+<AudioAsset
+    AssetName="TD_CannonFiringSound"
+    AssetAutoUnload="0"
+    AudioFile="TD_CannonFiringSound.wav" />

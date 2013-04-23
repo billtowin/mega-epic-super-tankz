@@ -1,0 +1,7 @@
+<AnimationAsset
+    AssetName="blueGemAnim"
+    Image="@asset=MyModule:blueGemImage"
+    animationFrames="0 1 2 3 4 5 6 7"
+    animationTime="1"
+    animationCycle="1"
+     />

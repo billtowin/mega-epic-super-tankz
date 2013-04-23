@@ -1,0 +1,7 @@
+<ImageAsset
+  AssetName="rocksImage"
+  ImageFile="rocks.png"
+  CellCountX="3"
+  CellCountY="1"
+  CellHeight="256"
+  CellWidth="256" />

@@ -1,0 +1,64 @@
+Brainstorm:
+  New Features:
+    ☐ Think 
+  Shorterm:
+     Tank Types:
+       ☐ Quick Tank
+       ☐ Fat Tank
+     Powerups/Weapons:
+       ☐ Speed Boost
+       ☐ Homing Missile
+       ☐ Machine Gun
+
+  Longterm:
+    Maps:
+      ☐ Add spawn points into each map
+        ☐ build spawnPoint object
+        ☐ like powerupSpawn but for Tanks?
+        ☐ spawnpoints attached to one Tank -> when tank dies it returns to its home spawn point
+      ☐ Find better way of defining/creating maps
+        ☐ Use .taml format for maps?
+    Various:
+      ☐ Coop/Single Player
+      ☐ Online Multiplayer
+      ☐ More Objects to put in maps, more powerups, more vehicles
+
+Effects:
+  Powerups:
+    ☐ Add porticle aura effect under tank when powerups are active (same color as powerup gem?)
+      ☐ Use same particle for every powerup but change Blend Mode for each?
+
+Networking:
+  ☐ Learn about basic networking in Torque 2D MIT
+  ☐ Build basic online functionality
+
+AI:
+  ☐ Build automated Turret
+  ☐ Build smart mines
+  ☐ Build simple Tank AI
+    ☐ build TankAIBehavior interfacing with TankMovementBehavior
+
+Tank:
+  Movement:
+    ☐ Seperate TankControlsBehavior into TankMovementBehavior and TankControlsBehavior
+      ☐ Add angularSpeedMultiplier and normalSpeedMultiplier to TankMovementBehavior
+      ☐ Add Speed Boost powerup (SpeedBoostBehavior) which increases both speed multipliers
+    ☐ Tweak/Improve tank movement feel
+      ☐ Make forward and backward speeds the same/closer to each other?
+  Combat:
+    ☐ Disable Movement when damaged for short time?
+      ☐ Make both speed multipliers == 0 for a short time
+      ☐ Make it cumulative with decreasing returns?
+
+Code Clarity:
+  ☐ Clean up main.cs
+  ☐ Add more clear descriptions to the various behaviors
+  ☐ Add comments to every function everywhere
+  ☐ Rename myScene to something more descriptive
+
+Weapons:
+  Charge Shot:
+    ☐ Modify shot size with charge? (faster => smaller?)
+
+Game Balance:
+  ☐ ?

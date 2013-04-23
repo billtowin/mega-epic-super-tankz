@@ -1,0 +1,8 @@
+<ImageAsset
+  AssetName="manyTanksImage"
+  ImageFile="manyTanks.png"
+  CellCountX="8"
+  CellCountY="8"
+  CellHeight="32"
+  CellWidth="32"
+  CellRowOrder="false" />

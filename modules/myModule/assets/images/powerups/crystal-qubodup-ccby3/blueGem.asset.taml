@@ -1,0 +1,8 @@
+<ImageAsset
+  AssetName="blueGemImage"
+  ImageFile="blueGem.png"
+  CellCountX="8"
+  CellCountY="1"
+  CellHeight="32"
+  CellWidth="32"
+  />

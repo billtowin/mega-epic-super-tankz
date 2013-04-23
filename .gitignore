@@ -1,0 +1,19 @@
+# Images
+*.png
+
+# Sounds
+*.wav
+
+# Encrypted Binaries
+*.cs.dso
+
+
+# Various
+*.dll
+*.exe
+*.log
+
+
+# Torsion Project files
+*.exports
+*.opt

@@ -1,0 +1,7 @@
+<ImageAsset
+  AssetName="boomImage"
+  ImageFile="boom.png"
+  CellCountX="8"
+  CellCountY="8"
+  CellHeight="128"
+  CellWidth="128"/>

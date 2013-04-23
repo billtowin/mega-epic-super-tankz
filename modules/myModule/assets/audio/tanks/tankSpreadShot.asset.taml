@@ -1,0 +1,4 @@
+<AudioAsset
+    AssetName="tankSpreadShotSound"
+    AssetAutoUnload="0"
+    AudioFile="tankSpreadShot.wav" />

@@ -1,0 +1,4 @@
+<AudioAsset
+    AssetName="powerdownSound"
+    AssetAutoUnload="0"
+    AudioFile="powerdown.wav" />

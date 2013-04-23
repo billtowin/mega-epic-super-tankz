@@ -1,0 +1,8 @@
+<ImageAsset
+  AssetName="greyGemImage"
+  ImageFile="greyGem.png"
+  CellCountX="8"
+  CellCountY="1"
+  CellHeight="32"
+  CellWidth="32"
+  />

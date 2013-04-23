@@ -1,0 +1,4 @@
+<AudioAsset
+    AssetName="tankDeathSound"
+    AssetAutoUnload="0"
+    AudioFile="tankDeath.wav" />

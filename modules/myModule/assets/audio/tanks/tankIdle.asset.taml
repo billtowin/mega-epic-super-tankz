@@ -1,0 +1,6 @@
+<AudioAsset
+    AssetName="tankIdleSound"
+    AssetAutoUnload="0"
+    AudioFile="tankIdle.wav"
+    Looping="true"
+    Volume="0.75"/>
