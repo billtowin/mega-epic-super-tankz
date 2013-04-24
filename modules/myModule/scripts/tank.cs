@@ -107,11 +107,15 @@ function Tank::onDisable(%this)
    if(!isObject(%movement))
       return;
    
-   %movement.oldTurnSpeedMultiplier = %movement.turnSpeedMultiplier;
-   %movement.oldLinearSpeedMultiplier = %movement.linearSpeedMultiplier;
-   
-   %movement.turnSpeedMultiplier = 0;
-   %movement.linearSpeedMultiplier = 0;   
+   if(%this.isDisabled == false)
+   {
+      %this.isDisabled = true;
+      %movement.oldTurnSpeedMultiplier = %movement.turnSpeedMultiplier;
+      %movement.oldLinearSpeedMultiplier = %movement.linearSpeedMultiplier;
+      
+      %movement.turnSpeedMultiplier = 0;
+      %movement.linearSpeedMultiplier = 0;
+   }
 }
 
 function Tank::onEnable(%this)
@@ -119,8 +123,12 @@ function Tank::onEnable(%this)
    %movement = %this.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
-   %movement.turnSpeedMultiplier = %movement.oldTurnSpeedMultiplier;
-   %movement.linearSpeedMultiplier = %movement.oldLinearSpeedMultiplier;
+   if(%this.isDisabled == true)
+   {
+      %this.isDisabled = false;
+      %movement.turnSpeedMultiplier = %movement.oldTurnSpeedMultiplier;
+      %movement.linearSpeedMultiplier = %movement.oldLinearSpeedMultiplier;
+   }
 }
 
 function Tank::onDeath(%this)
