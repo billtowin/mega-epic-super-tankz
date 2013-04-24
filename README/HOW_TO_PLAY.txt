@@ -1,4 +1,6 @@
 CONTROLS:
+	Enter: Reset Game
+
 	Player 1:
 		Movement: WASD
 		Primary Fire: v
