@@ -14,7 +14,7 @@ if (!isObject(MineShotBehavior))
    
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1500);
    %template.addBehaviorField(ammoCount, "Amount of Ammo", int, 5);
-   %template.addBehaviorField(mineLifespan, "LifeSpan of Mine (in ms)", int, 40000);
+   %template.addBehaviorField(mineLifespan, "LifeSpan of Mine (in ms)", int, 20000);
 }
 
 function MineShotBehavior::onBehaviorAdd(%this)
