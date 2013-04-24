@@ -1,0 +1,15 @@
+CONTROLS:
+	Player 1:
+		Movement: Arrows key
+		Primary Fire: ,
+		Secondary Fire: .
+
+	Player 2:
+		Movement: WASD
+		Primary Fire: v
+		Secondary Fire: b
+
+GAMEPLAY:
+	Primary Fire -> Hold down button to charge your shot (becomes faster and travels farther)
+
+	Secondary Fire -> pickup certain powerups on map in order to gain a secondary fire for a short time
