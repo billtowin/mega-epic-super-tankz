@@ -22,6 +22,9 @@ function createTank(%initialFrame, %x_pos, %y_pos)
       initialFrame = %initialFrame;
       
       secondaryWeapon = "";
+      disableOnDamage = true;
+      disableTime = 300; //in ms
+      disableMultiplier = 0.4;
    };
    %tank.createPolygonBoxCollisionShape(%tank.Size.width * 0.82, %tank.Size.height * 0.85);
    %tank.setCollisionGroups("0 1 2 3");
@@ -101,21 +104,23 @@ function Tank::powerDown(%this, %powerupInstance)
    }
 }
 
+function Tank::onDamage(%this)
+{
+   if(%this.isDisabled == false)
+   {
+      %this.onDisable();
+      %this.enableSchedule = %this.schedule(%this.disableTime, onEnable);
+   }
+}
 function Tank::onDisable(%this)
 {
    %movement = %this.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
-   
-   if(%this.isDisabled == false)
-   {
-      %this.isDisabled = true;
-      %movement.oldTurnSpeedMultiplier = %movement.turnSpeedMultiplier;
-      %movement.oldLinearSpeedMultiplier = %movement.linearSpeedMultiplier;
       
-      %movement.turnSpeedMultiplier = 0;
-      %movement.linearSpeedMultiplier = 0;
-   }
+   %this.isDisabled = true;
+   %movement.turnSpeedMultiplier *= %this.disableMultiplier;
+   %movement.linearSpeedMultiplier *= %this.disableMultiplier;
 }
 
 function Tank::onEnable(%this)
@@ -123,12 +128,10 @@ function Tank::onEnable(%this)
    %movement = %this.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
-   if(%this.isDisabled == true)
-   {
-      %this.isDisabled = false;
-      %movement.turnSpeedMultiplier = %movement.oldTurnSpeedMultiplier;
-      %movement.linearSpeedMultiplier = %movement.oldLinearSpeedMultiplier;
-   }
+      
+   %this.isDisabled = false;
+   %movement.turnSpeedMultiplier /= %this.disableMultiplier;
+   %movement.linearSpeedMultiplier /= %this.disableMultiplier;
 }
 
 function Tank::onDeath(%this)
