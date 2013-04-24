@@ -6,11 +6,11 @@ if (!isObject(TankMovementBehavior))
    %template.behaviorType = "Movement";
    %template.description  = "Tank style movement behavior";
 
-   %template.addBehaviorField(turnSpeed, "Speed when moving turning", float, 100);
+   %template.addBehaviorField(turnSpeed, "Speed when turning", float, 110);
    %template.addBehaviorField(turnSpeedMultiplier, "Speed multiplier for turning", float, 1.0);      
    
-   %template.addBehaviorField(forwardSpeed, "Speed when moving forward", float, 12);
-   %template.addBehaviorField(backwardSpeed, "Speed when moving backward", float, 8);
+   %template.addBehaviorField(forwardSpeed, "Speed when moving forward", float, 13);
+   %template.addBehaviorField(backwardSpeed, "Speed when moving backward", float, 11);
    %template.addBehaviorField(linearSpeedMultiplier, "Speed multiplier for moving backwards or forwards", float, 1.0);   
 }
 
