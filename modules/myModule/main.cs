@@ -45,6 +45,7 @@ function MyModule::create( %this )
    //Utility Powerups
    exec("./scripts/behaviors/combat/powerups/Regeneration.cs");
    exec("./scripts/behaviors/combat/powerups/Teleport.cs");
+   exec("./scripts/behaviors/combat/powerups/SpeedBoost.cs");
    
    exec("./scripts/behaviors/combat/damage/TakesDamage.cs");
    exec("./scripts/behaviors/combat/damage/DealsDamage.cs");
@@ -105,7 +106,7 @@ function MyModule::resetMap1(%this)
    //Middle Area
    myScene.add(createBarrier(0,0, 5, 15));
    
-   myScene.add(createPowerupSpawner(0, 35, "0 3"));
+   myScene.add(createPowerupSpawner(0, 35, "0 3 5"));
    myScene.add(createPowerupSpawner(0, -35, "1 2 4"));
 }
 
