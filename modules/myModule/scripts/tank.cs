@@ -31,7 +31,7 @@ function createTank(%initialFrame, %x_pos, %y_pos)
    //Takes Damage Behavior
    %tank.addBehavior(TakesDamageBehavior.createInstance());
    //Disable On Damage Behavior
-   %tank.addBehavior(DisableOnDamageBehavior.createInstance());
+   %tank.addBehavior(SlowOnDamageBehavior.createInstance());
    //Fixed Health Bar Behavior
    %healthBar = %tank.createHealthBar();
    %healthBarBehavior = FixedHealthBarBehavior.createInstance();

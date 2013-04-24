@@ -49,7 +49,7 @@ function MyModule::create( %this )
    
    exec("./scripts/behaviors/combat/damage/TakesDamage.cs");
    exec("./scripts/behaviors/combat/damage/DealsDamage.cs");
-   exec("./scripts/behaviors/combat/damage/DisableOnDamage.cs");
+   exec("./scripts/behaviors/combat/damage/SlowOnDamage.cs");
    exec("./scripts/behaviors/combat/damage/FixedHealthBar.cs");
    exec("./scripts/behaviors/spawn/PowerupSpawner.cs");
    

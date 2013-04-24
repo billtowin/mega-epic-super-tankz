@@ -68,20 +68,16 @@ function TankMovementBehavior::updateMovement(%this, %speed)
 function TankMovementBehavior::moveForward(%this)
 {
    %this.stopSounds();
-   if(%this.linearSpeedMultiplier != 0) {
-      %this.movingSound = alxPlay("MyModule:tankMovingSound2");
-      %this.animate(false);
-   }
+   %this.movingSound = alxPlay("MyModule:tankMovingSound2");
+   %this.animate(false);
    %this.updateMovement(%this.forwardSpeed);
 }
 
 function TankMovementBehavior::moveBackward(%this)
 {
    %this.stopSounds();
-   if(%this.linearSpeedMultiplier != 0) {
-      %this.movingSound = alxPlay("MyModule:tankMovingSound2");
-      %this.animate(true);
-   }
+   %this.movingSound = alxPlay("MyModule:tankMovingSound2");
+   %this.animate(true);
    %this.updateMovement(-%this.backwardSpeed);
 }
 

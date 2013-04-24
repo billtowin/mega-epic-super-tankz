@@ -1,6 +1,6 @@
-if (!isObject(DisableOnDamageBehavior))
+if (!isObject(SlowOnDamageBehavior))
 {
-   %template = new BehaviorTemplate(DisableOnDamageBehavior);
+   %template = new BehaviorTemplate(SlowOnDamageBehavior);
    
    %template.friendlyName = "Takes Damage";
    %template.behaviorType = "Damage";
@@ -9,27 +9,30 @@ if (!isObject(DisableOnDamageBehavior))
 
    %template.addBehaviorField(damageThreshold, "Amount of damage which must be dealt within the damageThresholdTime to disable the owner", int, 30);
    %template.addBehaviorField(damageThresholdTime, "Time (in ms) within which damage can be dealt (for disabling purposes) before resetting", int, 1000);
-   %template.addBehaviorField(disableTime, "Time (in ms) to disable the owner", int, 300);
-   %template.addBehaviorField(disableMultiplier, "Multiplier to apply to owner's speed",float, 0.4);
+   %template.addBehaviorField(disableTime, "Time (in ms) to disable the owner", int, 200);
+   %template.addBehaviorField(disableMultiplier, "Multiplier to apply to owner's speed",float, 0.5); //Blows up with exactly 0
 }
 
-function DisableOnDamageBehavior::onBehaviorAdd(%this)
+function SlowOnDamageBehavior::onBehaviorAdd(%this)
 {
+   if(%this.disableMultiplier == 0){
+      %this.disableMultiplier = 0.01;   
+   }
    %this.resetDamageDealt();
 }
 
-function DisableOnDamageBehavior::onBehaviorRemove(%this)
+function SlowOnDamageBehavior::onBehaviorRemove(%this)
 {
 }
 
-function DisableOnDamageBehavior::resetDamageDealt(%this)
+function SlowOnDamageBehavior::resetDamageDealt(%this)
 {
    %this.damageDealt = 0;
 }
 
-function DisableOnDamageBehavior::onDamage(%this, %damage)
+function SlowOnDamageBehavior::onDamage(%this, %damage)
 {
-   if(!%this.isDisabled)
+   if(!%this.isSlowed)
    {
       if(%this.damageDealt == 0) {
          %this.resetDmgSchedule = %this.schedule(%this.damageThresholdTime, resetDamageDealt);    
@@ -40,30 +43,30 @@ function DisableOnDamageBehavior::onDamage(%this, %damage)
       {
          cancel(%this.resetDmgSchedule);
          %this.resetDamageDealt();
-         %this.onDisable();
-         %this.enableSchedule = %this.schedule(%this.disableTime, onEnable);
+         %this.onSlow();
+         %this.enableSchedule = %this.schedule(%this.disableTime, onReset);
       }
    }
 }
 
-function DisableOnDamageBehavior::onDisable(%this)
+function SlowOnDamageBehavior::onSlow(%this)
 {
    %movement = %this.owner.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
       
-   %this.isDisabled = true;
+   %this.isSlowed = true;
    %movement.turnSpeedMultiplier *= %this.disableMultiplier;
    %movement.linearSpeedMultiplier *= %this.disableMultiplier;
 }
 
-function DisableOnDamageBehavior::onEnable(%this)
+function SlowOnDamageBehavior::onReset(%this)
 {
    %movement = %this.owner.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
       
-   %this.isDisabled = false;
+   %this.isSlowed = false;
    %movement.turnSpeedMultiplier /= %this.disableMultiplier;
    %movement.linearSpeedMultiplier /= %this.disableMultiplier;
 }
