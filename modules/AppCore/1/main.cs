@@ -29,7 +29,7 @@ function AppCore::create( %this )
     exec("./scripts/openal.cs");
     
     // Initialize the canvas
-    initializeCanvas("Torque 2D");
+    initializeCanvas("Mega Epic Super Tankz v0.01 ALPHA");
     
     // Set the canvas color
     Canvas.BackgroundColor = "CornflowerBlue";
