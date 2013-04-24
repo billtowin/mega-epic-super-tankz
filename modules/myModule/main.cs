@@ -28,6 +28,7 @@ function MyModule::create( %this )
    exec("./scripts/powerupSpawner.cs");
       
    exec("./scripts/behaviors/movement/TankControls.cs");
+   exec("./scripts/behaviors/movement/TankMovement.cs");
    exec("./scripts/behaviors/scene/Pause.cs");
    
    //Main Weapon
@@ -117,6 +118,7 @@ function addPlayer1Tank()
    %p1Tank.mainKey1 = "keyboard z";
    %p1Tank.mainKey2 = "keyboard x";
    //Controls
+   %p1Tank.addBehavior(TankMovementBehavior.createInstance());
    %controlsP1 = TankControlsBehavior.createInstance();
    %controlsP1.forwardKey = "keyboard up";
    %controlsP1.backwardKey = "keyboard down";
@@ -137,6 +139,7 @@ function addPlayer2Tank()
    %p2Tank.Angle = 90;
    %p2Tank.mainKey1 = "keyboard o";
    %p2Tank.mainKey2 = "keyboard p";
+   %p2Tank.addBehavior(TankMovementBehavior.createInstance());
    %controlsP2 = TankControlsBehavior.createInstance();
    %controlsP2.forwardKey = "keyboard w";
    %controlsP2.backwardKey = "keyboard s";
