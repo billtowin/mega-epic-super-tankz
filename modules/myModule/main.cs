@@ -106,8 +106,8 @@ function MyModule::resetMap1(%this)
    //Middle Area
    myScene.add(createBarrier(0,0, 5, 15));
    
-   myScene.add(createPowerupSpawner(0, 35));
-   myScene.add(createPowerupSpawner(0, -35));
+   myScene.add(createPowerupSpawner(0, 35, "0 3"));
+   myScene.add(createPowerupSpawner(0, -35, "1 2 4"));
 }
 
 function addPlayer1Tank()

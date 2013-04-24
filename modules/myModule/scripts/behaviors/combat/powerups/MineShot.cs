@@ -12,7 +12,7 @@ if (!isObject(MineShotBehavior))
 
    %template.addBehaviorField(speed, "Mine Speed", float, 3);
    
-   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2500);
+   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1500);
    %template.addBehaviorField(ammoCount, "Amount of Ammo", int, 5);
    %template.addBehaviorField(mineLifespan, "LifeSpan of Mine (in ms)", int, 40000);
 }
