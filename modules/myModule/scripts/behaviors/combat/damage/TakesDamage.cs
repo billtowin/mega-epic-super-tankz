@@ -23,9 +23,9 @@ function TakesDamageBehavior::onBehaviorRemove(%this)
 function TakesDamageBehavior::takeDamage(%this, %amount)
 {
    if(%amount > 0){
-      %disableOnDamage = %this.owner.getBehavior("DisableOnDamageBehavior");
-      if (isObject(%disableOnDamage))
-         %disableOnDamage.onDamage(%amount);
+      %slowOnDamage = %this.owner.getBehavior("SlowOnDamageBehavior");
+      if (isObject(%slowOnDamage))
+         %slowOnDamage.onDamage(%amount);
    }
    
    %newHealth = %this.health - %amount;
