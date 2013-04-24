@@ -143,8 +143,7 @@ function ChargeShot::onCollision(%this, %object, %details)
 
 function ChargeShot::onDeath(%this)
 {
-   %currentScene = %this.getScene();
-   addExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 5);
+   %this.getScene().add(createExplosion(%this.Position.x SPC (%this.Position.y + 2), 5));
    alxPlay("MyModule:tankShotExplosionSound");
    %this.safeDelete();
 }

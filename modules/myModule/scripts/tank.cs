@@ -130,7 +130,7 @@ function Tank::onDeath(%this)
    if (isObject(%tankControls)) {
       %this.stopSounds();
    }
-   addExplosion(%this.getScene(), %this.Position, %this.Size.y);
+   %this.getScene().add(createExplosion(%this.Position, %this.Size.y));
    %this.healthBar.safeDelete();
    %this.safeDelete();
 }

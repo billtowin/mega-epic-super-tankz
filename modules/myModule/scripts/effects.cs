@@ -1,4 +1,4 @@
-function addExplosion(%scene, %position, %scale)
+function createExplosion(%position, %scale)
 {
    // ParticlePlayer is also derived from SceneObject, we add it just like we've added all the other
    //objects so far
@@ -13,5 +13,5 @@ function addExplosion(%scene, %position, %scale)
    //This Scales the particles to twice their original size
    %explosion.setSizeScale(%scale);
    
-   %scene.add(%explosion);
+   return %explosion;
 }

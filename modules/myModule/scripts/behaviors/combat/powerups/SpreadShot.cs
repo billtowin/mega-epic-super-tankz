@@ -102,8 +102,7 @@ function SpreadShot::onCollision(%this, %object, %details)
 
 function SpreadShot::onDeath(%this)
 {
-   %currentScene = %this.getScene();
-   addExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 3);
+   %this.getScene().add(createExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 3));
    alxPlay("MyModule:tankShotExplosionSound");
    %this.safeDelete();
 }
