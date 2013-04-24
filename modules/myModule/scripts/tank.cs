@@ -26,6 +26,8 @@ function createTank(%initialFrame, %x_pos, %y_pos)
    %tank.createPolygonBoxCollisionShape(%tank.Size.width * 0.82, %tank.Size.height * 0.85);
    %tank.setCollisionGroups("0 1 2 3");
    
+   //Tank Movement Behavior
+   %tank.addBehavior(TankMovementBehavior.createInstance());
    //Takes Damage Behavior
    %tank.addBehavior(TakesDamageBehavior.createInstance());
    //Fixed Health Bar Behavior
@@ -99,6 +101,29 @@ function Tank::powerDown(%this, %powerupInstance)
       %this.removeBehavior(%powerupInstance);
    }
 }
+
+function Tank::onDisable(%this)
+{
+   %movement = %this.getBehavior("TankMovementBehavior");
+   if(!isObject(%movement))
+      return;
+   
+   %movement.oldTurnSpeedMultiplier = %movement.turnSpeedMultiplier;
+   %movement.oldLinearSpeedMultiplier = %movement.linearSpeedMultiplier;
+   
+   %movement.turnSpeedMultiplier = 0;
+   %movement.linearSpeedMultiplier = 0;   
+}
+
+function Tank::onEnable(%this)
+{
+   %movement = %this.getBehavior("TankMovementBehavior");
+   if(!isObject(%movement))
+      return;
+   %movement.turnSpeedMultiplier = %movement.oldTurnSpeedMultiplier;
+   %movement.linearSpeedMultiplier = %movement.oldLinearSpeedMultiplier;
+}
+
 function Tank::destroy(%this)
 {
    %tankControls = %this.getBehavior("TankControlsBehavior");

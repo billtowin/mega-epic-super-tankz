@@ -9,6 +9,9 @@ if (!isObject(TakesDamageBehavior))
 
    %template.addBehaviorField(health, "The amount of health the object has", int, 120);
    %template.addBehaviorField(maxHealth, "The maximum amount of health the object has", int, 120);
+   
+   %template.addBehaviorField(disableOnDamage, "Disable when damaged?", bool, true);
+   %template.addBehaviorField(disableTime, "Time to be disabled after being hit (in ms)", int, 250);
 }
 
 function TakesDamageBehavior::onBehaviorAdd(%this)
@@ -22,7 +25,14 @@ function TakesDamageBehavior::onBehaviorRemove(%this)
 
 function TakesDamageBehavior::takeDamage(%this, %amount)
 {
+   if(%this.disableOnDamage && %amount > 0 )
+   {
+      %this.owner.onDisable();
+      %this.owner.reEnableSchedule = %this.owner.schedule(%this.disableTime, onEnable);
+   }
+   
    %newHealth = %this.health - %amount;
+   
    if(%newHealth >= %this.maxHealth){
       %newHealth = %this.maxHealth;   
    }
