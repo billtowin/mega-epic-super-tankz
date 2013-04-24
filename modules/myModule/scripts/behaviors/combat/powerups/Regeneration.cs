@@ -16,8 +16,6 @@ if (!isObject(RegenerationBehavior))
 
 function RegenerationBehavior::onBehaviorAdd(%this)
 {
-   alxPlay("MyModule:powerupSound");
-   
    %this.currentTicks = 0;
    %takesDamage = %this.owner.getBehavior("TakesDamageBehavior");
    if (!isObject(%takesDamage))
