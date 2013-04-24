@@ -1,0 +1,9 @@
+Player 1:
+	Movement: Arrows key
+	Primary Fire: ,
+	Secondary Fire: .
+
+Player 2:
+	Movement: WASD
+	Primary Fire: v
+	Secondary Fire: b
