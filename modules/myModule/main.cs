@@ -116,17 +116,17 @@ function addPlayer1Tank()
    
    //Controls
    %primary = PrimaryAbilityBehavior.createInstance();
-   %primary.key = "keyboard ,";
+   %primary.key = "keyboard v";
    %secondary = SecondaryAbilityBehavior.createInstance();
-   %secondary.key = "keyboard .,,,,,,e";
+   %secondary.key = "keyboard b";
    %p1Tank.addBehavior(%primary);
    %p1Tank.addBehavior(%secondary);
    
    %controlsP1 = TankControlsBehavior.createInstance();
-   %controlsP1.forwardKey = "keyboard up";
-   %controlsP1.backwardKey = "keyboard down";
-   %controlsP1.leftKey = "keyboard left";
-   %controlsP1.rightKey = "keyboard right";
+   %controlsP1.forwardKey = "keyboard w";
+   %controlsP1.backwardKey = "keyboard s";
+   %controlsP1.leftKey = "keyboard a";
+   %controlsP1.rightKey = "keyboard d";
    %p1Tank.addBehavior(%controlsP1);
    //Weapons
    %chargeShotP1 = ChargeShotBehavior.createInstance();
@@ -141,17 +141,17 @@ function addPlayer2Tank()
    %p2Tank.Angle = 90;
    
    %primary = PrimaryAbilityBehavior.createInstance();
-   %primary.key = "keyboard v";
+   %primary.key = "keyboard ,";
    %secondary = SecondaryAbilityBehavior.createInstance();
-   %secondary.key = "keyboard b";
+   %secondary.key = "keyboard .";
    %p2Tank.addBehavior(%primary);
    %p2Tank.addBehavior(%secondary);
    
    %controlsP2 = TankControlsBehavior.createInstance();
-   %controlsP2.forwardKey = "keyboard w";
-   %controlsP2.backwardKey = "keyboard s";
-   %controlsP2.leftKey = "keyboard a";
-   %controlsP2.rightKey = "keyboard d";
+   %controlsP2.forwardKey = "keyboard up";
+   %controlsP2.backwardKey = "keyboard down";
+   %controlsP2.leftKey = "keyboard left";
+   %controlsP2.rightKey = "keyboard right";
    %p2Tank.addBehavior(%controlsP2);
    %chargeShotP2 = ChargeShotBehavior.createInstance();
    %p2Tank.addBehavior(%chargeShotP2);
