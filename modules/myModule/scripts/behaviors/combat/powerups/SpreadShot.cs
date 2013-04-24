@@ -61,7 +61,7 @@ function SpreadShotBehavior::createSpreadShot(%this)
 {
    %adjustedAngle = getPositiveAngle(%this.owner);
    //Calculate a direction from an Angle and Magnitude
-   %shotOffset= Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.7);
+   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.7);
    
    %angles = "0 -8 8 -16 16";
    for(%i = 0; %i < getWordCount(%angles); %i++)
@@ -96,12 +96,6 @@ function SpreadShot::onCollision(%this, %object, %details)
    if(%object.class $= "Scenery" && %object.isBreakable)
    {
       %object.safeDelete();
-   }
-   
-   //FIXES WEIRD BUG, when ChargeShot collides with SpreadShot
-   if(%object.class !$= "ChargeShot")
-   {
-      %this.destroy();
    }
 }
 
