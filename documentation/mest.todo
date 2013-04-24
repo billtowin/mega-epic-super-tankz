@@ -41,13 +41,13 @@ AI:
 Tank:
   Movement:
     ☐ Seperate TankControlsBehavior into TankMovementBehavior and TankControlsBehavior
-      ☐ Add angularSpeedMultiplier and normalSpeedMultiplier to TankMovementBehavior
+      ✔ Add angularSpeedMultiplier and normalSpeedMultiplier to TankMovementBehavior @done (13-04-23 22:51)
       ☐ Add Speed Boost powerup (SpeedBoostBehavior) which increases both speed multipliers
     ☐ Tweak/Improve tank movement feel
       ☐ Make forward and backward speeds the same/closer to each other?
   Combat:
-    ☐ Disable Movement when damaged for short time?
-      ☐ Make both speed multipliers == 0 for a short time
+    ✔ Disable Movement when damaged for short time? @done (13-04-23 22:51)
+      ✔ Make both speed multipliers == 0 for a short time @done (13-04-23 22:51)
       ☐ Make it cumulative with decreasing returns?
 
 Code Clarity:
