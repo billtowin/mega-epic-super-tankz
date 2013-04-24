@@ -116,9 +116,9 @@ function addPlayer1Tank()
    
    //Controls
    %primary = PrimaryAbilityBehavior.createInstance();
-   %primary.key = "keyboard z";
+   %primary.key = "keyboard ,";
    %secondary = SecondaryAbilityBehavior.createInstance();
-   %secondary.key = "keyboard x";
+   %secondary.key = "keyboard .,,,,,,e";
    %p1Tank.addBehavior(%primary);
    %p1Tank.addBehavior(%secondary);
    
@@ -141,9 +141,9 @@ function addPlayer2Tank()
    %p2Tank.Angle = 90;
    
    %primary = PrimaryAbilityBehavior.createInstance();
-   %primary.key = "keyboard o";
+   %primary.key = "keyboard v";
    %secondary = SecondaryAbilityBehavior.createInstance();
-   %secondary.key = "keyboard p";
+   %secondary.key = "keyboard b";
    %p2Tank.addBehavior(%primary);
    %p2Tank.addBehavior(%secondary);
    
