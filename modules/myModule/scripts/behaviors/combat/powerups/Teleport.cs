@@ -6,7 +6,6 @@ if (!isObject(TeleportBehavior))
    %template.behaviorType = "Combat";
    %template.description  = "Tank teleport ability";
 
-   %template.addBehaviorField(powerKey, "Key to bind to Teleport", keybind, "keyboard k");
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
 
    %template.addBehaviorField(teleportDistance, "Teleport Distance", int, 12);
@@ -16,19 +15,12 @@ if (!isObject(TeleportBehavior))
 
 function TeleportBehavior::onBehaviorAdd(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-   GlobalActionMap.bindObj(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1), "teleport", %this);
-   
    %this.isLoaded = true;
 }
 
 function TeleportBehavior::onBehaviorRemove(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
    %this.stopSounds();
-   GlobalActionMap.unbind(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1));
 }
 
 function TeleportBehavior::stopSounds(%this)

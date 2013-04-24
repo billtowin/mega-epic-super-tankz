@@ -6,7 +6,6 @@ if (!isObject(SpreadShotBehavior))
    %template.behaviorType = "Combat";
    %template.description  = "Tank Shotgun/Spread Shot ability";
 
-   %template.addBehaviorField(powerKey, "Key to bind to Shoot", keybind, "keyboard j");
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
    %template.addBehaviorField(damage, "Damage per shot", int, 12);
 
@@ -18,20 +17,12 @@ if (!isObject(SpreadShotBehavior))
 
 function SpreadShotBehavior::onBehaviorAdd(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-   GlobalActionMap.bindObj(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1), "spreadShot", %this);
-   
    %this.isLoaded = true;
 }
 
 function SpreadShotBehavior::onBehaviorRemove(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-   
    %this.stopSounds();
-   GlobalActionMap.unbind(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1));
 }
 
 function SpreadShotBehavior::stopSounds(%this)
@@ -102,7 +93,7 @@ function SpreadShot::onCollision(%this, %object, %details)
 
 function SpreadShot::onDeath(%this)
 {
-   %this.getScene().add(createExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 3));
+   %this.getScene().add(createExplosion(%this.Position.x SPC (%this.Position.y + 2), 3));
    alxPlay("MyModule:tankShotExplosionSound");
    %this.safeDelete();
 }

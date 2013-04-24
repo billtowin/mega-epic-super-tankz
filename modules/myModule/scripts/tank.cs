@@ -79,7 +79,6 @@ function Tank::onCollision(%this, %object, %collisiondetails)
       }
       
       %powerupInstance = %object.powerupBehavior.createInstance();
-      %powerupInstance.powerKey = %this.mainKey2;
       %this.addBehavior(%powerupInstance);
       if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior"|| %temp $= "MineShotBehavior")
       {

@@ -6,7 +6,6 @@ if (!isObject(LaserBeamBehavior))
    %template.behaviorType = "Combat";
    %template.description  = "Tank Laser Shot projectile";
 
-   %template.addBehaviorField(powerKey, "Key to bind to Shoot", keybind, "keyboard q");
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
    %template.addBehaviorField(damage, "Damage per laser beam", int, 6);
 
@@ -20,23 +19,16 @@ if (!isObject(LaserBeamBehavior))
 
 function LaserBeamBehavior::onBehaviorAdd(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-   GlobalActionMap.bindObj(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1), "startBeam", %this);
-   
    %this.timeSpentBeaming = 0;
    %this.isLoaded = true;
 }
 
 function LaserBeamBehavior::onBehaviorRemove(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-   GlobalActionMap.unbind(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1));
    %this.stopSounds();
 }
 
-function LaserBeamBehavior::startBeam(%this)
+function LaserBeamBehavior::beam(%this)
 {
    if(%this.isLoaded)
    {

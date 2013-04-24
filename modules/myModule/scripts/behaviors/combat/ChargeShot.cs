@@ -6,7 +6,6 @@ if (!isObject(ChargeShotBehavior))
    %template.behaviorType = "Combat";
    %template.description  = "Tank Cannon Charge Shot projectile";
 
-   %template.addBehaviorField(powerKey, "Key to bind to Shoot", keybind, "keyboard ;");
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, -1);
    %template.addBehaviorField(damage, "Damage per shot", int, 30);
 
@@ -20,23 +19,13 @@ if (!isObject(ChargeShotBehavior))
 
 function ChargeShotBehavior::onBehaviorAdd(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-
-   %id = %this.owner.getId();
-   GlobalActionMap.bindCmd(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1), %id @ ".startCharging();", %id @ ".shoot();");
-   
    %this.timeSpentCharging = 0;
    %this.isLoaded = true;
 }
 
 function ChargeShotBehavior::onBehaviorRemove(%this)
 {
-   if (!isObject(GlobalActionMap))
-      return;
-   
    %this.stopSounds();
-   GlobalActionMap.unbind(getWord(%this.powerKey, 0), getWord(%this.powerKey, 1));
 }
 
 function ChargeShotBehavior::stopSounds(%this)
