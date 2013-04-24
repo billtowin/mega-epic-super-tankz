@@ -97,6 +97,7 @@ function SpreadShot::onCollision(%this, %object, %details)
    {
       %object.safeDelete();
    }
+   %this.destroy();
 }
 
 function SpreadShot::destroy(%this)
