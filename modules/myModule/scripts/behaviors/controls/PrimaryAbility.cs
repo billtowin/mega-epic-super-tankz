@@ -3,7 +3,7 @@ if (!isObject(PrimaryAbilityBehavior))
    %template = new BehaviorTemplate(PrimaryAbilityBehavior);
 
    %template.friendlyName = "Tank Primary Ability";
-   %template.behaviorType = "Input";
+   %template.behaviorType = "Controls";
    %template.description  = "Tank Primary Ability";
 
    %template.addBehaviorField(key, "Key to bind to primary ability fire", keybind, "keyboard z");

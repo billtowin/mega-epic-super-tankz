@@ -28,9 +28,9 @@ function MyModule::create( %this )
    exec("./scripts/powerupSpawner.cs");
    
    //Player Controls      
-   exec("./scripts/behaviors/movement/TankControls.cs");
-   exec("./scripts/behaviors/player/PrimaryAbility.cs");
-   exec("./scripts/behaviors/player/SecondaryAbility.cs");
+   exec("./scripts/behaviors/controls/TankControls.cs");
+   exec("./scripts/behaviors/controls/PrimaryAbility.cs");
+   exec("./scripts/behaviors/controls/SecondaryAbility.cs");
    
    exec("./scripts/behaviors/movement/TankMovement.cs");
    exec("./scripts/behaviors/scene/Pause.cs");

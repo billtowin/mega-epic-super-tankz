@@ -3,7 +3,7 @@ if (!isObject(TankControlsBehavior))
    %template = new BehaviorTemplate(TankControlsBehavior);
 
    %template.friendlyName = "Tank Controls";
-   %template.behaviorType = "Input";
+   %template.behaviorType = "Controls";
    %template.description  = "Tank style movement control";
 
    %template.addBehaviorField(forwardKey, "Key to bind to forward movement", keybind, "keyboard up");

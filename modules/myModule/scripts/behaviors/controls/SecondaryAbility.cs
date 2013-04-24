@@ -3,7 +3,7 @@ if (!isObject(SecondaryAbilityBehavior))
    %template = new BehaviorTemplate(SecondaryAbilityBehavior);
 
    %template.friendlyName = "Tank Secondary Ability";
-   %template.behaviorType = "Input";
+   %template.behaviorType = "Controls";
    %template.description  = "Tank Secondary Ability";
 
    %template.addBehaviorField(key, "Key to bind to secondary weapon fire", keybind, "keyboard x");
