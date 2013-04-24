@@ -22,9 +22,6 @@ function createTank(%initialFrame, %x_pos, %y_pos)
       initialFrame = %initialFrame;
       
       secondaryWeapon = "";
-      disableOnDamage = true;
-      disableTime = 300; //in ms
-      disableMultiplier = 0.4;
    };
    %tank.createPolygonBoxCollisionShape(%tank.Size.width * 0.82, %tank.Size.height * 0.85);
    %tank.setCollisionGroups("0 1 2 3");
@@ -33,6 +30,8 @@ function createTank(%initialFrame, %x_pos, %y_pos)
    %tank.addBehavior(TankMovementBehavior.createInstance());
    //Takes Damage Behavior
    %tank.addBehavior(TakesDamageBehavior.createInstance());
+   //Disable On Damage Behavior
+   %tank.addBehavior(DisableOnDamageBehavior.createInstance());
    //Fixed Health Bar Behavior
    %healthBar = %tank.createHealthBar();
    %healthBarBehavior = FixedHealthBarBehavior.createInstance();
@@ -102,36 +101,6 @@ function Tank::powerDown(%this, %powerupInstance)
       alxPlay("MyModule:powerdownSound");
       %this.removeBehavior(%powerupInstance);
    }
-}
-
-function Tank::onDamage(%this)
-{
-   if(%this.isDisabled == false)
-   {
-      %this.onDisable();
-      %this.enableSchedule = %this.schedule(%this.disableTime, onEnable);
-   }
-}
-function Tank::onDisable(%this)
-{
-   %movement = %this.getBehavior("TankMovementBehavior");
-   if(!isObject(%movement))
-      return;
-      
-   %this.isDisabled = true;
-   %movement.turnSpeedMultiplier *= %this.disableMultiplier;
-   %movement.linearSpeedMultiplier *= %this.disableMultiplier;
-}
-
-function Tank::onEnable(%this)
-{
-   %movement = %this.getBehavior("TankMovementBehavior");
-   if(!isObject(%movement))
-      return;
-      
-   %this.isDisabled = false;
-   %movement.turnSpeedMultiplier /= %this.disableMultiplier;
-   %movement.linearSpeedMultiplier /= %this.disableMultiplier;
 }
 
 function Tank::onDeath(%this)
