@@ -96,7 +96,7 @@ function MineShotBehavior::createMineShot(%this)
    %dealDmgBehavior.strength = %this.damage;
    %mine.addBehavior(%dealDmgBehavior);
    
-   %mine.dieSchedule = %mine.schedule(%this.mineLifespan,destroy);
+   %mine.dieSchedule = %mine.schedule(%this.mineLifespan,onDeath);
    
    // Add the sprite to the scene.
    %ownerScene = %this.owner.getScene();   
@@ -106,11 +106,11 @@ function MineShotBehavior::createMineShot(%this)
 function MineShot::onCollision(%this, %object, %details)
 {
    if(%object.class $= "Tank"){
-      %this.destroy();
+      %this.onDeath();
    }
 }
 
-function MineShot::destroy(%this)
+function MineShot::onDeath(%this)
 {
    %currentScene = %this.getScene();
    addExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 3);

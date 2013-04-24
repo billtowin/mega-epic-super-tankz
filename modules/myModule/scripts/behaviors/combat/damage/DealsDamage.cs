@@ -7,7 +7,7 @@ if (!isObject(DealsDamageBehavior))
    %template.description  = "Set the object to deal damage to TakesDamage objects it collides with";
 
    %template.addBehaviorField(strength, "The amount of damage the object deals", int, 25);
-   %template.addBehaviorField(destroyOnHit, "Destroy the object when it collides", bool, true);
+   %template.addBehaviorField(killOnHit, "Destroy the object when it collides", bool, true);
 }
 
 function DealsDamageBehavior::onBehaviorAdd(%this)
@@ -28,8 +28,8 @@ function DealsDamageBehavior::onCollision(%this, %dstObj, %srcRef, %dstRef, %tim
 {
    %this.dealDamage(%this.strength, %dstObj);
    
-   if (%this.destroyOnHit && %dstObj $= "Tank")
+   if (%this.killOnHit && %dstObj $= "Tank")
    {
-      %this.owner.destroy();
+      %this.owner.onDeath();
    }
 }

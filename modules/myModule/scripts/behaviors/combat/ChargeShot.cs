@@ -124,7 +124,7 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
    %dealDmgBehavior.strength = %this.damage;
    %shot.addBehavior(%dealDmgBehavior);
    
-   %shot.dieSchedule = %shot.schedule(%this.chargeShotLifespan,destroy);
+   %shot.dieSchedule = %shot.schedule(%this.chargeShotLifespan,onDeath);
    // Add the sprite to the scene.
    %this.owner.getScene().add( %shot );
 }
@@ -137,11 +137,11 @@ function ChargeShot::onCollision(%this, %object, %details)
    }
    if(%object.class !$= "Wall" && %object.class !$= "Scenery")
    {
-      %this.destroy();
+      %this.onDeath();
    }
 }
 
-function ChargeShot::destroy(%this)
+function ChargeShot::onDeath(%this)
 {
    %currentScene = %this.getScene();
    addExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 5);

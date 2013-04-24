@@ -40,7 +40,7 @@ function TakesDamageBehavior::takeDamage(%this, %amount)
    
    if (%this.health <= 0)
    {
-      %this.owner.destroy();
+      %this.owner.onDeath();
       return;
    }
    

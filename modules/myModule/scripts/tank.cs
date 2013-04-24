@@ -124,7 +124,7 @@ function Tank::onEnable(%this)
    %movement.linearSpeedMultiplier = %movement.oldLinearSpeedMultiplier;
 }
 
-function Tank::destroy(%this)
+function Tank::onDeath(%this)
 {
    %tankControls = %this.getBehavior("TankControlsBehavior");
    if (isObject(%tankControls)) {

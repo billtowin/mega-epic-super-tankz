@@ -107,7 +107,7 @@ function LaserBeamBehavior::createBeam(%this)
    
    %dealDmgBehavior = DealsDamageBehavior.createInstance();
    %dealDmgBehavior.strength = %this.damage;
-   %dealDmgBehavior.destroyOnHit = true;
+   %dealDmgBehavior.killOnHit = true;
    %beam.addBehavior(%dealDmgBehavior);
    
    %beam.dieSchedule = %beam.schedule(%this.beamRefreshTime,safeDelete);
@@ -122,6 +122,6 @@ function LaserBeam::onCollision(%this, %object, %details)
       %object.safeDelete();
    }
    if(%object.class $= "MineShot" || %object.class $= "SpreadShot" || %object.class $= "ChargeShot") {
-      %object.destroy();   
+      %object.onDeath();  
    }
 }

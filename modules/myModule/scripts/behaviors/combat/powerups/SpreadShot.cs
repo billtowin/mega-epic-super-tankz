@@ -86,7 +86,7 @@ function SpreadShotBehavior::createSpreadShot(%this)
       %dealDmgBehavior.strength = %this.damage;
       %shot.addBehavior(%dealDmgBehavior);
       
-      %shot.dieSchedule = %shot.schedule(%this.spreadShotLifespan,destroy);
+      %shot.dieSchedule = %shot.schedule(%this.spreadShotLifespan,onDeath);
       %this.owner.getScene().add( %shot );
    }
 }
@@ -97,10 +97,10 @@ function SpreadShot::onCollision(%this, %object, %details)
    {
       %object.safeDelete();
    }
-   %this.destroy();
+   %this.onDeath();
 }
 
-function SpreadShot::destroy(%this)
+function SpreadShot::onDeath(%this)
 {
    %currentScene = %this.getScene();
    addExplosion(%currentScene, %this.Position.x SPC (%this.Position.y + 2), 3);
