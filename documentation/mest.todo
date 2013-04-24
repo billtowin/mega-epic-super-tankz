@@ -1,8 +1,22 @@
+Joseph:
+  ☐ -AI for NPC tanks and possible turret enemies etc.
+  ☐ -Different Multiplayer maps with dif themes
+  ☐ -Single/co-op player story mode
+  ✔ Speed boost power up @done (13-04-24 11:46)
+  ☐ -flamethrower wep?
+  ☐ -warp points on map that warp you to a random other warp point
+  ☐ -bigger map
+  ☐ - customizable settings for multiplayer. Ex: turning weps on or off, or changing start hp, ai difficulty, etc.
+  ☐ -Once story mode is running,we could add a upgrade system. For stronger weps, scales dmg/hp etc.
+  ☐ -Lives? Time limit? Score Board?
+  ☐ -Awesome battle music
+  ☐ -Being able to choose type of vehicle. Maybe have different classes. Like:
 Brainstorm:
   New Features:
     ☐ Think 
   Shorterm:
      Tank Types:
+       Different health points, speeds, and damage multipliers?
        ☐ Quick Tank
        ☐ Fat Tank
      Powerups/Weapons:
@@ -24,8 +38,9 @@ Brainstorm:
       ☐ More Objects to put in maps, more powerups, more vehicles
 
 Effects:
-  Powerups:
-    ☐ Add porticle aura effect under tank when powerups are active (same color as powerup gem?)
+  Powerups/Weapons:
+    ☐ Add weapon icon below tank to show currently equipped weapon
+    ☐ Add particle aura effect under tank when powerups are active (same color as powerup gem?)
       ☐ Use same particle for every powerup but change Blend Mode for each?
 
 Networking:
@@ -44,6 +59,7 @@ Tank:
       ✔ Add angularSpeedMultiplier and normalSpeedMultiplier to TankMovementBehavior @done (13-04-23 22:51)
       ☐ Add Speed Boost powerup (SpeedBoostBehavior) which increases both speed multipliers
     ☐ Tweak/Improve tank movement feel
+      ✔ Tweak it ? Polar? @done (13-04-24 10:40)
       ☐ Make forward and backward speeds the same/closer to each other?
   Combat:
     ✔ Disable Movement when damaged for short time? @done (13-04-23 22:51)
@@ -57,8 +73,6 @@ Code Clarity:
   ☐ Rename myScene to something more descriptive
 
 Weapons:
-  Charge Shot:
-    ☐ Modify shot size with charge? (faster => smaller?)
 
 Game Balance:
   ☐ ?
