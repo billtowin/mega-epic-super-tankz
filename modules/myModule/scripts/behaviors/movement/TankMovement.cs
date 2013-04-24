@@ -21,6 +21,7 @@ function TankMovementBehavior::onBehaviorAdd(%this)
 
 function TankMovementBehavior::onBehaviorRemove(%this)
 {
+   %this.stopSounds();
 }
 
 function TankMovementBehavior::stopSounds(%this)
