@@ -29,13 +29,15 @@ function PrimaryAbilityBehavior::onBehaviorRemove(%this)
 function PrimaryAbilityBehavior::startAbility(%this)
 {
    %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-   if (isObject(%chargeShot))
+   if (isObject(%chargeShot)) {
       %chargeShot.startCharging();
+   }
 }
 
 function PrimaryAbilityBehavior::endAbility(%this)
 {
    %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-   if (isObject(%chargeShot))
+   if (isObject(%chargeShot)) {
       %chargeShot.shoot();
+   }
 }
