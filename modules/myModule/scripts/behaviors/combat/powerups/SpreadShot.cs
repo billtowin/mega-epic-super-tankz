@@ -13,6 +13,9 @@ if (!isObject(SpreadShotBehavior))
    
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1500);
    %template.addBehaviorField(spreadShotLifespan, "LifeSpan of Shot (in ms)", int, 400);
+   
+   %template.addBehaviorField(shotAngles, "Angles of shot from front", string, "0 -8 8 -16 16");
+   
 }
 
 function SpreadShotBehavior::onBehaviorAdd(%this)
@@ -52,10 +55,9 @@ function SpreadShotBehavior::createSpreadShot(%this)
 {
    %adjustedAngle = getPositiveAngle(%this.owner);
    //Calculate a direction from an Angle and Magnitude
-   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.7);
+   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 1);
    
-   %angles = "0 -8 8 -16 16";
-   for(%i = 0; %i < getWordCount(%angles); %i++)
+   for(%i = 0; %i < getWordCount(%this.shotAngles); %i++)
    {
       %shot = new Sprite()
       {
@@ -69,7 +71,7 @@ function SpreadShotBehavior::createSpreadShot(%this)
          SceneGroup = 2;
          CollisionCallback = true;
       };
-      %shot.setLinearVelocityPolar(%this.owner.Angle - 180 + getWord(%angles, %i),%this.speed);
+      %shot.setLinearVelocityPolar(%this.owner.Angle - 180 + getWord(%this.shotAngles, %i),%this.speed);
       %shot.createCircleCollisionShape( 0.7, "-0.1 0.6" );
       %shot.setCollisionGroups("0 1 4");
       

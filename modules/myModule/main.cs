@@ -60,6 +60,7 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/spawn/PowerupSpawner.cs");
    
    //AI
+   exec("./scripts/behaviors/AI/AIAbility.cs");
    exec("./scripts/behaviors/AI/Turret.cs");
    
    
@@ -74,6 +75,7 @@ function MyModule::create( %this )
    
    //myScene.setDebugOn("collision", "position");
    
+   //GUI?
    %this.resetMap1();
 }
 
@@ -87,7 +89,9 @@ function MyModule::resetMap1(%this)
 {
    alxStopAll();
    myScene.clear();
+   
    myScene.add(createBackground());
+   
    addPlayer1Tank();
    
    addPlayer2Tank();
@@ -122,16 +126,16 @@ function MyModule::resetMap1(%this)
    myScene.add(createPowerupSpawner(0, -35, "1 2 4"));
    
    // Corner Turrets
-   myScene.add(createTurret(47, 47, 14, 130));
-   myScene.add(createTurret(-47, 47, 14, -130));
-   myScene.add(createTurret(47, -47, 14, 50));
-   myScene.add(createTurret(-47, -47, 14,-50));
+   myScene.add(createRandomTurret(47, 47, 14, 130));
+   myScene.add(createRandomTurret(-47, 47, 14, -130));
+   myScene.add(createRandomTurret(47, -47, 14, 50));
+   myScene.add(createRandomTurret(-47, -47, 14,-50));
    
    // Powerup Turrets
-   myScene.add(createTurret(22, 47, 11, -130));
-   myScene.add(createTurret(-22, 47, 11, 130));
-   myScene.add(createTurret(22, -47, 11, -50));
-   myScene.add(createTurret(-22, -47, 11,50));
+   myScene.add(createRandomTurret(22, 47, 11, -130));
+   myScene.add(createRandomTurret(-22, 47, 11, 130));
+   myScene.add(createRandomTurret(22, -47, 11, -50));
+   myScene.add(createRandomTurret(-22, -47, 11,50));
 }
 
 function addPlayer1Tank()

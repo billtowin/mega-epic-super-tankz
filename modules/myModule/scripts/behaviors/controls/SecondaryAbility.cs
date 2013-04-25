@@ -28,6 +28,10 @@ function SecondaryAbilityBehavior::onBehaviorRemove(%this)
 
 function SecondaryAbilityBehavior::startAbility(%this)
 {
+}
+
+function SecondaryAbilityBehavior::endAbility(%this)
+{
    %teleport = %this.owner.getBehavior("TeleportBehavior");
    if (isObject(%teleport))
       %teleport.teleport();
@@ -43,8 +47,4 @@ function SecondaryAbilityBehavior::startAbility(%this)
    %laserBeam = %this.owner.getBehavior("LaserBeamBehavior");
    if (isObject(%laserBeam))
       %laserBeam.beam();
-}
-
-function SecondaryAbilityBehavior::endAbility(%this)
-{
 }

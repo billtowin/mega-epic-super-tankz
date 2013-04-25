@@ -21,27 +21,21 @@ if (!isObject(TurretBehavior))
 
 function TurretBehavior::onBehaviorAdd(%this)
 {
-   %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-   if (!isObject(%chargeShot))
+   %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
+   if (!isObject(%aiAbility))
    {
-      %chargeShot = ChargeShotBehavior.createInstance();
-      %chargeShot.duration = -1;
-      %chargeShot.damage = 20;
-      %chargeShot.minSpeed = 25;
-      %chargeShot.maxSpeed = 25;
-      %chargeShot.maxChargeTime = 1000;
-      %chargeShot.reloadTime = 3000;
-      %chargeShot.chargeShotLifespan = 1000;
-      %this.owner.addBehavior(%chargeShot);
+      %aiAbility = AIAbilityBehavior.createInstance();
+      %this.owner.addBehavior(%aiAbility);
    }
    %this.scanSchedule = %this.schedule(%this.scanUpdateTime, scanForTargets);
 }
 
 function TurretBehavior::onBehaviorRemove(%this)
 {
-   %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-   if (isObject(%chargeShot))
-      %this.owner.removeBehavior(%chargeShot);
+   %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
+   if (isObject(%aiAbility)){
+      %this.owner.removeBehavior(%aiAbility);
+   }
 }
 
 function TurretBehavior::scanForTargets(%this)
@@ -71,6 +65,10 @@ function TurretBehavior::scanForTargets(%this)
          }
          if(!%isWallBlockingPath) {
             %isAnyTargetAvailable = true;
+            %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
+            if (isObject(%aiAbility)){
+               %aiAbility.startAbility();
+            }
             %targetLocal = %this.owner.getLocalPoint(%obj.Position);
             %x = getWord(%targetLocal, 0);
             %y = getWord(%targetLocal, 1);
@@ -83,9 +81,10 @@ function TurretBehavior::scanForTargets(%this)
             }
             
             if(mAbs(%x) <= %this.targetBuffer) {
-               %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-               if (isObject(%chargeShot))
-                  %chargeShot.shoot();
+               %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
+               if (isObject(%aiAbility)){
+                  %aiAbility.endAbility();
+               }
             } else {
                %this.owner.rotateTo(%angle, %this.angularSpeed);
             }
