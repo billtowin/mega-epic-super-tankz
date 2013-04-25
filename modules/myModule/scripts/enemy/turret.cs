@@ -6,6 +6,7 @@ function createTurret(%x_pos, %y_pos, %range, %angle)
       class = Turret;
       Image = "ToyAssets:HollowArrow";
       BodyType = dynamic;
+      BlendColor = "Black";
       LinearDamping = 100;
       Position = %x_pos SPC %y_pos;
       Angle = %angle;
