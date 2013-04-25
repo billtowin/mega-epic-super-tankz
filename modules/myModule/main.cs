@@ -126,16 +126,16 @@ function MyModule::resetMap1(%this)
    myScene.add(createPowerupSpawner(0, -35, "1 2 4"));
    
    // Corner Turrets
-   myScene.add(createRandomTurret(47, 47, 14, 130));
-   myScene.add(createRandomTurret(-47, 47, 14, -130));
-   myScene.add(createRandomTurret(47, -47, 14, 50));
-   myScene.add(createRandomTurret(-47, -47, 14,-50));
+   myScene.add(createRandomTurret(47, 47, 16, 130));
+   myScene.add(createRandomTurret(-47, 47, 16, -130));
+   myScene.add(createRandomTurret(47, -47, 16, 50));
+   myScene.add(createRandomTurret(-47, -47, 16,-50));
    
    // Powerup Turrets
-   myScene.add(createRandomTurret(22, 47, 11, -130));
-   myScene.add(createRandomTurret(-22, 47, 11, 130));
-   myScene.add(createRandomTurret(22, -47, 11, -50));
-   myScene.add(createRandomTurret(-22, -47, 11,50));
+   myScene.add(createRandomTurret(22, 47, 13, -130));
+   myScene.add(createRandomTurret(-22, 47, 13, 130));
+   myScene.add(createRandomTurret(22, -47, 13, -50));
+   myScene.add(createRandomTurret(-22, -47, 13,50));
 }
 
 function addPlayer1Tank()
