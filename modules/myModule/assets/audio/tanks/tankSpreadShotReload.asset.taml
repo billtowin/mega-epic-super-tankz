@@ -1,4 +1,5 @@
 <AudioAsset
     AssetName="tankSpreadShotReloadSound"
     AssetAutoUnload="0"
-    AudioFile="tankSpreadShotReload.wav" />
+    AudioFile="tankSpreadShotReload.wav"
+    Volume="0.80" />

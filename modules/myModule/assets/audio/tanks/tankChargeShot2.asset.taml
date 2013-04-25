@@ -1,4 +1,5 @@
 <AudioAsset
     AssetName="tankChargeShotSound2"
     AssetAutoUnload="0"
-    AudioFile="tankChargeShot2.wav" />
+    AudioFile="tankChargeShot2.wav"
+    Volume="0.90" />

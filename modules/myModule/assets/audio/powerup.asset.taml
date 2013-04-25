@@ -1,4 +1,5 @@
 <AudioAsset
     AssetName="powerupSound"
     AssetAutoUnload="0"
-    AudioFile="powerup.wav" />
+    AudioFile="powerup.wav"
+    Volume="0.90" />

@@ -1,4 +1,5 @@
 <AudioAsset
     AssetName="regenSound"
     AssetAutoUnload="0"
-    AudioFile="regen.wav" />
+    AudioFile="regen.wav"
+    Volume="0.90" />

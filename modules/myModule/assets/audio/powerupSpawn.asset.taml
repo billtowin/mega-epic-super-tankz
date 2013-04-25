@@ -1,4 +1,5 @@
 <AudioAsset
     AssetName="powerupSpawnSound"
     AssetAutoUnload="0"
-    AudioFile="powerupSpawn.wav" />
+    AudioFile="powerupSpawn.wav"
+    Volume="0.85" />
