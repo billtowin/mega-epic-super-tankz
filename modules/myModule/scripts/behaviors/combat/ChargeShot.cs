@@ -100,7 +100,7 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
       shotLevel = %shotLevel;
    };
    %adjustedAngle = getPositiveAngle(%this.owner); 
-   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.8);
+   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.6);
    %shot.Position = (%this.owner.Position.x + %shotOffset.x) SPC (%this.owner.Position.y + %shotOffset.y);
    
    %shot.setLinearVelocityPolar(%this.owner.Angle - 180, %shotSpeed);
