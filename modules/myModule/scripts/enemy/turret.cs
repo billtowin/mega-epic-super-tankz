@@ -103,6 +103,6 @@ function createRandomTurret(%x_pos, %y_pos, %range, %angle, %choices)
 
 function Turret::onDeath(%this)
 {
-   %this.getScene().add(createExplosion(%this.getPositon(), 1));
+   %this.getScene().add(createExplosion(%this.Position, 4));
    %this.safeDelete();
 }
