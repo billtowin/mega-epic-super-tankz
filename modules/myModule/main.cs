@@ -7,6 +7,7 @@ function MyModule::create( %this )
    // 3: powerups
    // 4: Scenery
    // 5: Mines
+   // 6: AI Enemies
    
    // Load GUI profiles.
    exec("./gui/guiProfiles.cs");
@@ -27,14 +28,19 @@ function MyModule::create( %this )
    exec("./scripts/powerup.cs");
    exec("./scripts/powerupSpawner.cs");
    
-   //Player Controls      
+   exec("./scripts/enemy/turret.cs");
+   
+   //Behaviors
+   
+   //Player Controls
+   exec("./scripts/behaviors/scene/Pause.cs");
    exec("./scripts/behaviors/controls/TankControls.cs");
    exec("./scripts/behaviors/controls/PrimaryAbility.cs");
    exec("./scripts/behaviors/controls/SecondaryAbility.cs");
    
+   //Movement
    exec("./scripts/behaviors/movement/TankMovement.cs");
-   exec("./scripts/behaviors/scene/Pause.cs");
-   
+
    //Main Weapon
    exec("./scripts/behaviors/combat/ChargeShot.cs");
    //Weapon Powerups
@@ -52,6 +58,10 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/combat/damage/SlowOnDamage.cs");
    exec("./scripts/behaviors/combat/damage/FixedHealthBar.cs");
    exec("./scripts/behaviors/spawn/PowerupSpawner.cs");
+   
+   //AI
+   exec("./scripts/behaviors/AI/Turret.cs");
+   
    
    GlobalActionMap.bindObj(keyboard, "enter", "resetMap1", %this);
    
@@ -107,8 +117,21 @@ function MyModule::resetMap1(%this)
    //Middle Area
    myScene.add(createBarrier(0,0, 5, 15));
    
+   //Powerups
    myScene.add(createPowerupSpawner(0, 35, "0 3 5"));
    myScene.add(createPowerupSpawner(0, -35, "1 2 4"));
+   
+   // Corner Turrets
+   myScene.add(createTurret(47, 47, 14, 130));
+   myScene.add(createTurret(-47, 47, 14, -130));
+   myScene.add(createTurret(47, -47, 14, 50));
+   myScene.add(createTurret(-47, -47, 14,-50));
+   
+   // Powerup Turrets
+   myScene.add(createTurret(22, 47, 11, -130));
+   myScene.add(createTurret(-22, 47, 11, 130));
+   myScene.add(createTurret(22, -47, 11, -50));
+   myScene.add(createTurret(-22, -47, 11,50));
 }
 
 function addPlayer1Tank()
