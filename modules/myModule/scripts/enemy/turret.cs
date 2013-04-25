@@ -4,9 +4,8 @@ function createTurret(%x_pos, %y_pos, %range, %angle)
    %turret = new Sprite()
    {
       class = Turret;
-      Image = "ToyAssets:HollowArrow";
+      Image = "MyModule:turretImage";
       BodyType = dynamic;
-      BlendColor = "Black";
       LinearDamping = 100;
       Position = %x_pos SPC %y_pos;
       Angle = %angle;
