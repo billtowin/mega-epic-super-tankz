@@ -56,6 +56,7 @@ function createChargeShotTurret(%x_pos, %y_pos, %range, %angle)
    %chargeShot.maxChargeTime = 1000;
    %chargeShot.reloadTime = 2000;
    %chargeShot.chargeShotLifespan = 800;
+   %chargeShot.shotOffset = 0.5;
    %turret.addBehavior(%chargeShot);
    
    return %turret;
@@ -71,6 +72,7 @@ function createSpreadShotTurret(%x_pos, %y_pos, %range, %angle)
    %spreadShot.reloadTime = 1500;
    %spreadShot.spreadShotLifespan = 500;
    %spreadShot.shotAngles = "0 -8 8";
+   %spreadShot.shotOffset = 0.5;
    %turret.addBehavior(%spreadShot);
    
    return %turret;

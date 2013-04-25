@@ -15,6 +15,9 @@ if (!isObject(ChargeShotBehavior))
    %template.addBehaviorField(maxChargeTime, "Charge Time (in ms)", int, 1000);
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1000);
    %template.addBehaviorField(chargeShotLifespan, "LifeSpan of Shot (in ms)", int, 1500);
+   
+   //BUG FIX: this is added because of weirdnes with shots coming out closer to owner than they should be and exploding right away
+   %template.addBehaviorField(shotOffset, "Additional shot offset", float, 0);
 }
 
 function ChargeShotBehavior::onBehaviorAdd(%this)
@@ -83,12 +86,7 @@ function ChargeShotBehavior::shoot(%this)
 }
 
 function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
-{
-   //Calculate a direction from an Angle and Magnitude
-   %adjustedAngle = getPositiveAngle(%this.owner);
-   %shotOffset= Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.7);
-   
-   // Create the sprite.
+{   
    %shot = new Sprite()
    {
       class = ChargeShot;
@@ -98,14 +96,16 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
       Size = 3;
       SceneLayer = 1;
       SceneGroup = 2;
-      Position = (%this.owner.Position.x + %shotOffset.x) SPC (%this.owner.Position.y + %shotOffset.y);
       CollisionCallback = true;
       DefaultRestitution = 1;
       
       shotLevel = %shotLevel;
    };
+   %adjustedAngle = getPositiveAngle(%this.owner); 
+   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.5 + %this.shotOffset);
+   %shot.Position = (%this.owner.Position.x + %shotOffset.x) SPC (%this.owner.Position.y + %shotOffset.y);
+   
    %shot.setLinearVelocityPolar(%this.owner.Angle - 180, %shotSpeed);
-   //Sets the collision shape to a circle
    %shot.createCircleCollisionShape( 0.7, "-0.1 0.6" );
    %shot.setCollisionGroups("0 1 4");
    
