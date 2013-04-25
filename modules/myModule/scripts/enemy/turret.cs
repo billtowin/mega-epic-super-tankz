@@ -72,7 +72,7 @@ function createSpreadShotTurret(%x_pos, %y_pos, %range, %angle)
    %spreadShot.damage = 7;
    %spreadShot.speed = 30;
    %spreadShot.reloadTime = 1500;
-   %spreadShot.spreadShotLifespan = 500;
+   %spreadShot.spreadShotLifespan = 800;
    %spreadShot.shotAngles = "0 -8 8";
    %spreadShot.shotOffset = 0.5;
    %turret.addBehavior(%spreadShot);

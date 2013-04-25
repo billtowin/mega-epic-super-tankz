@@ -18,29 +18,35 @@ function AIAbilityBehavior::onBehaviorRemove(%this)
 function AIAbilityBehavior::startAbility(%this)
 {
    %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-   if (isObject(%chargeShot))
+   if (isObject(%chargeShot)) {
       %chargeShot.startCharging();
+   }
 }
 
 function AIAbilityBehavior::endAbility(%this)
 {
    %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
-   if (isObject(%chargeShot))
+   if (isObject(%chargeShot)) {
       %chargeShot.shoot();
+   }
    
    %teleport = %this.owner.getBehavior("TeleportBehavior");
-   if (isObject(%teleport))
+   if (isObject(%teleport)) {
       %teleport.teleport();
+   }
    
    %spreadShot = %this.owner.getBehavior("SpreadShotBehavior");
-   if (isObject(%spreadShot))
+   if (isObject(%spreadShot)) {
       %spreadShot.spreadShot();
+   }
    
    %mineShot = %this.owner.getBehavior("MineShotBehavior");
-   if (isObject(%mineShot))
+   if (isObject(%mineShot)) {
       %mineShot.mineShot();
+   }
       
    %laserBeam = %this.owner.getBehavior("LaserBeamBehavior");
-   if (isObject(%laserBeam))
+   if (isObject(%laserBeam)) {
       %laserBeam.beam();
+   }
 }

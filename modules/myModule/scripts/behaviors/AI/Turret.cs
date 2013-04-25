@@ -21,6 +21,8 @@ if (!isObject(TurretBehavior))
 
 function TurretBehavior::onBehaviorAdd(%this)
 {
+   %this.hasAbilityStarted = false;
+   
    %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
    if (!isObject(%aiAbility))
    {
@@ -65,9 +67,12 @@ function TurretBehavior::scanForTargets(%this)
          }
          if(!%isWallBlockingPath) {
             %isAnyTargetAvailable = true;
-            %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
-            if (isObject(%aiAbility)){
-               %aiAbility.startAbility();
+            if(!%this.hasAbilityStarted) {
+               %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
+               if (isObject(%aiAbility)){
+                  %this.hasAbilityStarted = true;
+                  %aiAbility.startAbility();
+               }
             }
             %targetLocal = %this.owner.getLocalPoint(%obj.Position);
             %x = getWord(%targetLocal, 0);
@@ -82,8 +87,9 @@ function TurretBehavior::scanForTargets(%this)
             
             if(mAbs(%x) <= %this.targetBuffer) {
                %aiAbility = %this.owner.getBehavior("AIAbilityBehavior");
-               if (isObject(%aiAbility)){
+               if (isObject(%aiAbility) && %this.hasAbilityStarted){
                   %aiAbility.endAbility();
+                  %this.hasAbilityStarted = false;
                }
             } else {
                %this.owner.rotateTo(%angle, %this.angularSpeed);
