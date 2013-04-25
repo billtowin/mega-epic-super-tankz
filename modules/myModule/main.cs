@@ -75,7 +75,6 @@ function MyModule::create( %this )
    
    //myScene.setDebugOn("collision", "position");
    
-   //GUI?
    %this.resetMap1();
 }
 

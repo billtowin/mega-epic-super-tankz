@@ -15,9 +15,6 @@ if (!isObject(ChargeShotBehavior))
    %template.addBehaviorField(maxChargeTime, "Charge Time (in ms)", int, 1000);
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1000);
    %template.addBehaviorField(chargeShotLifespan, "LifeSpan of Shot (in ms)", int, 1500);
-   
-   //BUG FIX: this is added because of weirdnes with shots coming out closer to owner than they should be and exploding right away
-   %template.addBehaviorField(shotOffset, "Additional shot offset", float, 0);
 }
 
 function ChargeShotBehavior::onBehaviorAdd(%this)
@@ -90,10 +87,11 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
    %shot = new Sprite()
    {
       class = ChargeShot;
-      Animation = "ToyAssets:Cannonball_Projectile_3Animation";
+      Image = "ToyAssets:WhiteSphere";
+      BlendColor = "Black";
       BodyType = dynamic;
       Bullet = true;
-      Size = 3;
+      Size = 1.3;
       SceneLayer = 1;
       SceneGroup = 2;
       CollisionCallback = true;
@@ -102,11 +100,11 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
       shotLevel = %shotLevel;
    };
    %adjustedAngle = getPositiveAngle(%this.owner); 
-   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.5 + %this.shotOffset);
+   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.8);
    %shot.Position = (%this.owner.Position.x + %shotOffset.x) SPC (%this.owner.Position.y + %shotOffset.y);
    
    %shot.setLinearVelocityPolar(%this.owner.Angle - 180, %shotSpeed);
-   %shot.createCircleCollisionShape( 0.7, "-0.1 0.6" );
+   %shot.createCircleCollisionShape( %shot.Size.height / 2);
    %shot.setCollisionGroups("0 1 4");
    
    %dealDmgBehavior = DealsDamageBehavior.createInstance();
