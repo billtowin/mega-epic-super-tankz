@@ -32,6 +32,7 @@ function createTurret(%x_pos, %y_pos, %range, %angle)
 function createLaserBeamTurret(%x_pos, %y_pos, %range, %angle)
 {
    %turret = createTurret(%x_pos, %y_pos, %range, %angle);
+   %turret.BlendColor = "Red";
    %laserBeam = LaserBeamBehavior.createInstance();
    %laserBeam.duration = -1;
    %laserBeam.damage = 5;
@@ -65,6 +66,7 @@ function createChargeShotTurret(%x_pos, %y_pos, %range, %angle)
 function createSpreadShotTurret(%x_pos, %y_pos, %range, %angle)
 {
    %turret = createTurret(%x_pos, %y_pos, %range, %angle);
+   %turret.BlendColor = "Yellow";
    %spreadShot = SpreadShotBehavior.createInstance();
    %spreadShot.duration = -1;
    %spreadShot.damage = 7;
