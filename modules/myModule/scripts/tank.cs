@@ -58,7 +58,7 @@ function Tank::createHealthBar(%this)
       
       CollisionGroups = "";
    };
-   
+   %healthBar.setBlendAlpha(0.6);
    return %healthBar;
 }
 
