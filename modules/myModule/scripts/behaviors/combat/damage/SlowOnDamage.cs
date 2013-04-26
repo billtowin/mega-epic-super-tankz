@@ -23,6 +23,7 @@ function SlowOnDamageBehavior::onBehaviorAdd(%this)
 
 function SlowOnDamageBehavior::onBehaviorRemove(%this)
 {
+   alxStop(%this.stunSound);
 }
 
 function SlowOnDamageBehavior::resetDamageDealt(%this)
@@ -54,7 +55,8 @@ function SlowOnDamageBehavior::onSlow(%this)
    %movement = %this.owner.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
-      
+   
+   %this.stunSound = alxPlay("MyModule:tankStunSound");
    %this.isSlowed = true;
    %movement.turnSpeedMultiplier *= %this.disableMultiplier;
    %movement.linearSpeedMultiplier *= %this.disableMultiplier;
@@ -65,7 +67,8 @@ function SlowOnDamageBehavior::onReset(%this)
    %movement = %this.owner.getBehavior("TankMovementBehavior");
    if(!isObject(%movement))
       return;
-      
+   
+   alxStop(%this.stunSound);
    %this.isSlowed = false;
    %movement.turnSpeedMultiplier /= %this.disableMultiplier;
    %movement.linearSpeedMultiplier /= %this.disableMultiplier;
