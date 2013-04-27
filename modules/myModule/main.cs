@@ -78,6 +78,9 @@ function MyModule::create( %this )
    
    //myScene.setDebugOn("collision", "position");
    
+   $p1TankFrame = 0;
+   $p2TankFrame = 8;
+   $maxTankFrame = 64; 
    %this.resetMenu();
 }
 
@@ -89,27 +92,89 @@ function MyModule::destroy( %this )
 
 function MyModule::resetMenu(%this)
 {
+      
+   %this.unbind();
+   
    alxStopAll();
    myScene.clear();
+   
+   %id = %this.getId();
+   
+   GlobalActionMap.bindCmd(keyboard, "v", "",%id @ ".changeColorP1L();");
+   GlobalActionMap.bindCmd(keyboard, "b", "",%id @ ".changeColorP1R();");
+   GlobalActionMap.bindCmd(keyboard, ",", "",%id @ ".changeColorP2L();");
+   GlobalActionMap.bindCmd(keyboard, ".", "",%id @ ".changeColorP2R();");
    
    %items = createMenuItems(0, 0, 25);
    
    for(%i = 0 ; %i<getWordCount(%items);%i++) {
       myScene.add(getWord(%items, %i));   
    }
+   
+   %tankP1 = createBasicTank($p1TankFrame, -25, 20);
+   %tankP1.Angle = -120;
+   %tankP1.Size = "15 16";
+   myScene.add(%tankP1);
+   %tankP2 = createBasicTank($p2TankFrame, 25, 20);
+   %tankP2.Angle = 120;
+   %tankP2.Size = "15 16";
+   myScene.add(%tankP2);
+}
+
+function MyModule::unbind(%this)
+{
+   GlobalActionMap.unbind(keyboard, "v");
+   GlobalActionMap.unbind(keyboard, "b");
+   GlobalActionMap.unbind(keyboard, ",");
+   GlobalActionMap.unbind(keyboard, ".");
+}
+
+function MyModule::changeColorP1R(%this)
+{
+   $p1TankFrame =  ($p1TankFrame + 8) % $maxTankFrame;
+   %this.resetMenu();
+}
+
+function MyModule::changeColorP2R(%this)
+{
+   $p2TankFrame =  ($p2TankFrame + 8) % $maxTankFrame;
+   %this.resetMenu();
+}
+
+function MyModule::changeColorP1L(%this)
+{
+   if($p1TankFrame <= 0) {
+      $p1TankFrame = $maxTankFrame - 8;
+   } else {
+      $p1TankFrame =  ($p1TankFrame - 8) % $maxTankFrame;
+   }
+   %this.resetMenu();
+}
+
+function MyModule::changeColorP2L(%this)
+{
+   if($p2TankFrame <= 0) {
+      $p2TankFrame = $maxTankFrame - 8;
+   } else {
+      $p2TankFrame =  ($p2TankFrame - 8) % $maxTankFrame;
+   }
+   %this.resetMenu();
 }
 
 function MyModule::resetMap1(%this)
 {
+      
+   %this.unbind();
+   
    alxStopAll();
    myScene.clear();
    
    myScene.add(createBackground());
    
-   %tankP1 = createPlayer1Tank(0, -45, 0, -90);
+   %tankP1 = createPlayer1Tank($p1TankFrame, -45, 0, -90);
    myScene.add(%tankP1.healthBar);
    myScene.add(%tankP1);
-   %tankP2 = createPlayer2Tank(24, 45, 0, 90);
+   %tankP2 = createPlayer2Tank($p2TankFrame, 45, 0, 90);
    myScene.add(%tankP2.healthBar);
    myScene.add(%tankP2);
    

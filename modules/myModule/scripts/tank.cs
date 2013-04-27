@@ -1,4 +1,4 @@
-function createTank(%initialFrame, %x_pos, %y_pos)
+function createBasicTank(%initialFrame, %x_pos, %y_pos)
 {
    // Create the sprite.
    %tank = new Sprite()
@@ -25,6 +25,13 @@ function createTank(%initialFrame, %x_pos, %y_pos)
    };
    %tank.createPolygonBoxCollisionShape(%tank.Size.width * 0.82, %tank.Size.height * 0.85);
    %tank.setCollisionGroups("0 1 2 3");
+   
+   return %tank;
+}
+
+function createTank(%initialFrame, %x_pos, %y_pos)
+{
+   %tank = createBasicTank(%initialFrame, %x_pos, %y_pos);
    
    //Tank Movement Behavior
    %tank.addBehavior(TankMovementBehavior.createInstance());

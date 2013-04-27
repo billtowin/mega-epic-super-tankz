@@ -7,7 +7,16 @@
 <ScannerExts>cs; gui</ScannerExts>
 <Configs>
 <Config>
-<Name>Default Config</Name>
+<Name>Debug</Name>
+<Executable>Torque2D_DEBUG.exe</Executable>
+<Arguments/>
+<HasExports>true</HasExports>
+<Precompile>true</Precompile>
+<InjectDebugger>true</InjectDebugger>
+<UseSetModPaths>false</UseSetModPaths>
+</Config>
+<Config>
+<Name>Release</Name>
 <Executable>Torque2D.exe</Executable>
 <Arguments/>
 <HasExports>true</HasExports>
