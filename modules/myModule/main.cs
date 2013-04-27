@@ -64,6 +64,7 @@ function MyModule::create( %this )
    //AI
    exec("./scripts/behaviors/AI/turret/TurretAbility.cs");
    exec("./scripts/behaviors/AI/turret/Turret.cs");
+   exec("./scripts/behaviors/AI/smartMine/SmartMine.cs");
    
    
    %id = %this.getId();

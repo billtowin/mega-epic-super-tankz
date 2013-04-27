@@ -82,6 +82,9 @@ function MineShotBehavior::createMineShot(%this)
    %mine.createCircleCollisionShape(%mine.Size.x / 2);
    %mine.setCollisionGroups("0 1 4 5");
    
+   %smartMineBehavior = SmartMineBehavior.createInstance();
+   %mine.addBehavior(%smartMineBehavior);
+   
    %dealDmgBehavior = DealsDamageBehavior.createInstance();
    %dealDmgBehavior.strength = %this.damage;
    %mine.addBehavior(%dealDmgBehavior);
