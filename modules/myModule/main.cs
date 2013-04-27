@@ -40,8 +40,8 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/controls/PrimaryAbility.cs");
    exec("./scripts/behaviors/controls/SecondaryAbility.cs");
    
-   //Movement
-   exec("./scripts/behaviors/movement/TankMovement.cs");
+   //Vehicles
+   exec("./scripts/behaviors/vehicles/tanks/TankMovement.cs");
 
    //Main Weapon
    exec("./scripts/behaviors/combat/ChargeShot.cs");
