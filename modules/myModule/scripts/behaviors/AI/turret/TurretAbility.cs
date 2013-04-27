@@ -30,19 +30,9 @@ function TurretAbilityBehavior::endAbility(%this)
       %chargeShot.shoot();
    }
    
-   %teleport = %this.owner.getBehavior("TeleportBehavior");
-   if (isObject(%teleport)) {
-      %teleport.teleport();
-   }
-   
    %spreadShot = %this.owner.getBehavior("SpreadShotBehavior");
    if (isObject(%spreadShot)) {
       %spreadShot.spreadShot();
-   }
-   
-   %mineShot = %this.owner.getBehavior("MineShotBehavior");
-   if (isObject(%mineShot)) {
-      %mineShot.mineShot();
    }
       
    %laserBeam = %this.owner.getBehavior("LaserBeamBehavior");
