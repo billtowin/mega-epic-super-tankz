@@ -66,8 +66,9 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/AI/turret/Turret.cs");
    
    
-   GlobalActionMap.bindObj(keyboard, "enter", "resetMap1", %this);
-   GlobalActionMap.bindObj(keyboard, "escape", "resetMenu", %this);
+   %id = %this.getId();
+   GlobalActionMap.bindCmd(keyboard, "enter", "", %id @ ".resetMap1();");
+   GlobalActionMap.bindCmd(keyboard, "escape", "", %id @ ".resetMenu();");
    
    setRandomSeed();
    
@@ -100,7 +101,6 @@ function MyModule::resetMenu(%this)
    myScene.clear();
    
    %id = %this.getId();
-   
    GlobalActionMap.bindCmd(keyboard, "v", "",%id @ ".changeColorP1L();");
    GlobalActionMap.bindCmd(keyboard, "b", "",%id @ ".changeColorP1R();");
    GlobalActionMap.bindCmd(keyboard, ",", "",%id @ ".changeColorP2L();");
