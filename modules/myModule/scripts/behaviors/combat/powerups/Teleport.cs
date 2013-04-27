@@ -8,9 +8,9 @@ if (!isObject(TeleportBehavior))
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
 
-   %template.addBehaviorField(teleportDistance, "Teleport Distance", int, 12);
+   %template.addBehaviorField(teleportDistance, "Teleport Distance", int, 15);
    
-   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2500);
+   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2000);
 }
 
 function TeleportBehavior::onBehaviorAdd(%this)

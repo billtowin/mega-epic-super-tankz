@@ -7,10 +7,10 @@ if (!isObject(ChargeShotBehavior))
    %template.description  = "Tank Cannon Charge Shot projectile";
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, -1);
-   %template.addBehaviorField(damage, "Damage per shot", int, 30);
+   %template.addBehaviorField(damage, "Damage per shot", int, 25);
 
-   %template.addBehaviorField(minSpeed, "Normal Speed", float, 50);
-   %template.addBehaviorField(maxSpeed, "Speed when fully charged", float, 100);
+   %template.addBehaviorField(minSpeed, "Normal Speed", float, 45);
+   %template.addBehaviorField(maxSpeed, "Speed when fully charged", float, 85);
    
    %template.addBehaviorField(maxChargeTime, "Charge Time (in ms)", int, 1000);
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1000);

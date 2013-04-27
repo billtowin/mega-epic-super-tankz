@@ -7,8 +7,8 @@ if (!isObject(SpeedBoostBehavior))
    %template.description  = "Tank Speed Boost";
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
-   %template.addBehaviorField(turnSpeedMultiplier, "Turning Speed Multiplier", float, 1.3);
-   %template.addBehaviorField(linearSpeedMultiplier, "Linear Speed Multiplier", float, 1.5);
+   %template.addBehaviorField(turnSpeedMultiplier, "Turning Speed Multiplier", float, 1.5);
+   %template.addBehaviorField(linearSpeedMultiplier, "Linear Speed Multiplier", float, 1.6);
 }
 
 function SpeedBoostBehavior::onBehaviorAdd(%this)

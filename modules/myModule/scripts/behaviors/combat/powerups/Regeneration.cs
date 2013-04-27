@@ -7,9 +7,9 @@ if (!isObject(RegenerationBehavior))
    %template.description  = "Tank Regeneration Ability";
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
-   %template.addBehaviorField(maxNumberOfTicks, "Number of Ticks", int, 5);
-   %template.addBehaviorField(timeBetweenTicks, "Time between ticks", int, 1000);
-   %template.addBehaviorField(lifeGainedPerTick, "Life Gained per tick", int, 20);
+   %template.addBehaviorField(maxNumberOfTicks, "Number of Ticks", int, 10);
+   %template.addBehaviorField(timeBetweenTicks, "Time between ticks", int, 1300);
+   %template.addBehaviorField(lifeGainedPerTick, "Life Gained per tick", int, 12);
    
    %template.addBehaviorField(ticksOnAdd, "Does the owner gain life immediately?", bool, true);
 }

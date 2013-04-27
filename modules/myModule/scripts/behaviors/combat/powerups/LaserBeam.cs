@@ -7,13 +7,13 @@ if (!isObject(LaserBeamBehavior))
    %template.description  = "Tank Laser Shot projectile";
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
-   %template.addBehaviorField(damage, "Damage per laser beam", int, 6);
+   %template.addBehaviorField(damage, "Damage per laser beam", int, 5);
 
-   %template.addBehaviorField(beamWidth, "Width of Laser beam", float, 0.5);
-   %template.addBehaviorField(beamLength, "Range/Length of laser beam", float, 30);
+   %template.addBehaviorField(beamWidth, "Width of Laser beam", float, 0.8);
+   %template.addBehaviorField(beamLength, "Range/Length of laser beam", float, 22);
    
-   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2000);
-   %template.addBehaviorField(maxBeamTime, "Max Beam Time", int, 500);
+   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2500);
+   %template.addBehaviorField(maxBeamTime, "Max Beam Time", int, 600);
    %template.addBehaviorField(beamRefreshTime, "Time between beam refreshs (for positioning)", int, 50);
 }
 
