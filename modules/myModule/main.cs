@@ -62,8 +62,8 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/spawn/PowerupSpawner.cs");
    
    //AI
-   exec("./scripts/behaviors/AI/AIAbility.cs");
-   exec("./scripts/behaviors/AI/Turret.cs");
+   exec("./scripts/behaviors/AI/turret/TurretAbility.cs");
+   exec("./scripts/behaviors/AI/turret/Turret.cs");
    
    
    GlobalActionMap.bindObj(keyboard, "enter", "resetMap1", %this);

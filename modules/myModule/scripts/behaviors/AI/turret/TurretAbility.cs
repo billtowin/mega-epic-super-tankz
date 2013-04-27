@@ -1,21 +1,21 @@
-if (!isObject(AIAbilityBehavior))
+if (!isObject(TurretAbilityBehavior))
 {
-   %template = new BehaviorTemplate(AIAbilityBehavior);
+   %template = new BehaviorTemplate(TurretAbilityBehavior);
 
    %template.friendlyName = "AI Ability 'Control'";
    %template.behaviorType = "AI";
    %template.description  = "AI Ability";
 }
 
-function AIAbilityBehavior::onBehaviorAdd(%this)
+function TurretAbilityBehavior::onBehaviorAdd(%this)
 {
 }
 
-function AIAbilityBehavior::onBehaviorRemove(%this)
+function TurretAbilityBehavior::onBehaviorRemove(%this)
 {
 }
 
-function AIAbilityBehavior::startAbility(%this)
+function TurretAbilityBehavior::startAbility(%this)
 {
    %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
    if (isObject(%chargeShot)) {
@@ -23,7 +23,7 @@ function AIAbilityBehavior::startAbility(%this)
    }
 }
 
-function AIAbilityBehavior::endAbility(%this)
+function TurretAbilityBehavior::endAbility(%this)
 {
    %chargeShot = %this.owner.getBehavior("ChargeShotBehavior");
    if (isObject(%chargeShot)) {
