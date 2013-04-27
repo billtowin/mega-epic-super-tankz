@@ -112,6 +112,7 @@ function Tank::powerDown(%this, %powerupInstance)
 
 function Tank::onDeath(%this)
 {
+   %this.deathSound = alxPlay("MyModule:tankDeathSound");
    %tankControls = %this.getBehavior("TankControlsBehavior");
    if (isObject(%tankControls)) {
       %this.stopSounds();

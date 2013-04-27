@@ -3,4 +3,4 @@
     AssetAutoUnload="0"
     AudioFile="tankMoving.wav"
     Looping="true"
-    Volume="0.65"/>
+    Volume="0.45"/>

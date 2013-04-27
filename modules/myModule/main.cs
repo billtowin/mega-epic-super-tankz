@@ -170,7 +170,6 @@ function MyModule::resetMap1(%this)
    alxStopAll();
    myScene.clear();
    
-   alxPlay("MyModule:gameplayMusic");
    myScene.add(createBackground());
    
    %tankP1 = createPlayer1Tank($p1TankFrame, -45, 0, -90);
