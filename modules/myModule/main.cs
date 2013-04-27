@@ -12,6 +12,8 @@ function MyModule::create( %this )
    // Load GUI profiles.
    exec("./gui/guiProfiles.cs");
    
+   exec("./scripts/menu.cs");
+   
    exec("./scripts/effects.cs");
    exec("./scripts/misc.cs");
    
@@ -65,6 +67,7 @@ function MyModule::create( %this )
    
    
    GlobalActionMap.bindObj(keyboard, "enter", "resetMap1", %this);
+   GlobalActionMap.bindObj(keyboard, "escape", "resetMenu", %this);
    
    setRandomSeed();
    
@@ -75,13 +78,25 @@ function MyModule::create( %this )
    
    //myScene.setDebugOn("collision", "position");
    
-   %this.resetMap1();
+   %this.resetMenu();
 }
 
 function MyModule::destroy( %this )
 {
    destroySceneWindow();
    alxStopAll();
+}
+
+function MyModule::resetMenu(%this)
+{
+   alxStopAll();
+   myScene.clear();
+   
+   %items = createMenuItems(0, 0, 25);
+   
+   for(%i = 0 ; %i<getWordCount(%items);%i++) {
+      myScene.add(getWord(%items, %i));   
+   }
 }
 
 function MyModule::resetMap1(%this)
@@ -91,9 +106,12 @@ function MyModule::resetMap1(%this)
    
    myScene.add(createBackground());
    
-   addPlayer1Tank();
-   
-   addPlayer2Tank();
+   %tankP1 = createPlayer1Tank(0, -45, 0, -90);
+   myScene.add(%tankP1.healthBar);
+   myScene.add(%tankP1);
+   %tankP2 = createPlayer2Tank(24, 45, 0, 90);
+   myScene.add(%tankP2.healthBar);
+   myScene.add(%tankP2);
    
    //Top Powerup Area
    myScene.add(createBarrier(0,45, 20, 5));
@@ -137,10 +155,10 @@ function MyModule::resetMap1(%this)
    myScene.add(createRandomTurret(-22, -47, 13,50));
 }
 
-function addPlayer1Tank()
+function createPlayer1Tank(%initialFrame, %x_pos, %y_pos, %angle)
 {
-   %p1Tank = createTank(0, -45, 0);
-   %p1Tank.Angle = -90;
+   %p1Tank = createTank(%initialFrame, %x_pos, %y_pos);
+   %p1Tank.Angle = %angle;
    
    //Controls
    %primary = PrimaryAbilityBehavior.createInstance();
@@ -159,14 +177,14 @@ function addPlayer1Tank()
    //Weapons
    %chargeShotP1 = ChargeShotBehavior.createInstance();
    %p1Tank.addBehavior(%chargeShotP1);
-   myScene.add(%p1Tank.healthBar);
-   myScene.add(%p1Tank);
+   return %p1Tank;
+   
 }
 
-function addPlayer2Tank()
+function createPlayer2Tank(%initialFrame, %x_pos, %y_pos, %angle)
 {
-   %p2Tank = createTank(24, 45, 0);
-   %p2Tank.Angle = 90;
+   %p2Tank = createTank(%initialFrame, %x_pos, %y_pos);
+   %p2Tank.Angle = %angle;
    
    %primary = PrimaryAbilityBehavior.createInstance();
    %primary.key = "keyboard ,";
@@ -183,6 +201,5 @@ function addPlayer2Tank()
    %p2Tank.addBehavior(%controlsP2);
    %chargeShotP2 = ChargeShotBehavior.createInstance();
    %p2Tank.addBehavior(%chargeShotP2);
-   myScene.add(%p2Tank.healthBar);
-   myScene.add(%p2Tank);
+   return %p2Tank;
 }

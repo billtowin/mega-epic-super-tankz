@@ -32,7 +32,7 @@ function AppCore::create( %this )
     initializeCanvas("Mega Epic Super Tankz v0.02 ALPHA");
     
     // Set the canvas color
-    Canvas.BackgroundColor = "CornflowerBlue";
+    Canvas.BackgroundColor = "Black";
     Canvas.UseBackgroundColor = true;
     
     // Initialize audio
