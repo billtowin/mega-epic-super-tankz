@@ -15,7 +15,7 @@ function createTurret(%x_pos, %y_pos, %range, %angle)
    };
    %turret.createPolygonBoxCollisionShape();
    %turretBehavior = TurretBehavior.createInstance();
-   %turretBehavior.range = %range;
+   %turretBehavior.rangeRadius = %range;
    %turretBehavior.resetAngle = %angle;
    %turret.addBehavior(%turretBehavior);
    

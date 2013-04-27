@@ -7,7 +7,7 @@ if (!isObject(TurretBehavior))
    %template.description  = "Turret AI";
    
    %template.addBehaviorField(angularSpeed, "Angular/Swivel Speed", float, 70);
-   %template.addBehaviorField(range, "Range of turret", int, 15);
+   %template.addBehaviorField(rangeRadius, "Range radius of turret", int, 15);
    %template.addBehaviorField(scanUpdateTime, "Scan for targets update time", int, 100);
    
    %template.addBehaviorField(resetAngle, "Angle to reset to ", float, 0);
@@ -42,13 +42,7 @@ function TurretBehavior::onBehaviorRemove(%this)
 
 function TurretBehavior::scanForTargets(%this)
 {
-   %startX = %this.owner.Position.x - %this.range * 0.83;
-   %endX = %this.owner.Position.x + %this.range * 0.83;
-   %startY = %this.owner.Position.y - %this.range * 0.83;
-   %endY = %this.owner.Position.y + %this.range * 0.83;
-   %startPoint = %startX SPC %startY;
-   %endPoint = %endX SPC %endY;
-   %picked = %this.owner.getScene().pickArea(%startPoint, %endPoint, -1, -1);
+   %picked = %this.owner.getScene().pickCircle(%this.owner.Position, %this.rangeRadius, -1, -1, "collision");
    %isAnyTargetAvailable = false;
       
    //Gets possible turret targets
