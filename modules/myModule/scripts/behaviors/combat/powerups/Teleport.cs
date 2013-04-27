@@ -39,9 +39,13 @@ function TeleportBehavior::teleport(%this)
 {
    if(%this.isLoaded)
    {
-      %adjustedAngle = getPositiveAngle(%this.owner);
-      %teleportOffset = Vector2Direction(%adjustedAngle, %this.teleportDistance);
-      %this.owner.Position = %this.owner.Position.x + %teleportOffset.x SPC %this.owner.Position.y + %teleportOffset.y;
+      if(%this.owner.AngularVelocity > 0) {
+         %this.owner.Position = %this.owner.getWorldPoint((-%this.teleportDistance) SPC 0);
+      } else if (%this.owner.AngularVelocity < 0) {
+         %this.owner.Position = %this.owner.getWorldPoint( %this.teleportDistance SPC 0);      
+      } else {
+         %this.owner.Position = %this.owner.getWorldPoint(0 SPC %this.teleportDistance);      
+      }
       
       %this.teleportSound = alxPlay("MyModule:teleportSound");
       %this.isLoaded = false;
