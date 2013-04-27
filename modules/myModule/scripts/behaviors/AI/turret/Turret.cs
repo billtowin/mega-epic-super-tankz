@@ -42,10 +42,10 @@ function TurretBehavior::onBehaviorRemove(%this)
 
 function TurretBehavior::scanForTargets(%this)
 {
-   %startX = %this.owner.Position.x - %this.range;
-   %endX = %this.owner.Position.x + %this.range;
-   %startY = %this.owner.Position.y - %this.range;
-   %endY = %this.owner.Position.y + %this.range;
+   %startX = %this.owner.Position.x - %this.range * 0.83;
+   %endX = %this.owner.Position.x + %this.range * 0.83;
+   %startY = %this.owner.Position.y - %this.range * 0.83;
+   %endY = %this.owner.Position.y + %this.range * 0.83;
    %startPoint = %startX SPC %startY;
    %endPoint = %endX SPC %endY;
    %picked = %this.owner.getScene().pickArea(%startPoint, %endPoint, -1, -1);
@@ -104,18 +104,18 @@ function TurretBehavior::scanForTargets(%this)
                %turretAbility.startAbility();
             }
          }
-         %targetLocal = %this.owner.getLocalPoint(%target.Position);
-         %x = getWord(%targetLocal, 0);
-         %y = getWord(%targetLocal, 1);
+         %targetLocalPoint = %this.owner.getLocalPoint(%target.Position);
+         %targetLocalX = getWord(%targetLocalPoint, 0);
          
          %angle = %this.owner.Angle;
-         if(%x > 0){
+         if(%targetLocalX > 0){
             %angle -= %this.angleDelta;         
          } else {
             %angle += %this.angleDelta;         
          }
          
-         if(mAbs(%x) <= %this.targetBuffer) 
+         //Either shoot at acquired target or rotate towards it
+         if(mAbs(%targetLocalX) <= %this.targetBuffer) 
          {
             %turretAbility = %this.owner.getBehavior("TurretAbilityBehavior");
             if (isObject(%turretAbility) && %this.hasAbilityStarted)
@@ -128,6 +128,7 @@ function TurretBehavior::scanForTargets(%this)
          }
       }
    }
+   //If no target is acquired and shouldResetAngle is set to true, then rotate toward original angle
    if(!%isAnyTargetAvailable && %this.shouldResetAngle) {
       %this.owner.rotateTo(%this.resetAngle, %this.angularSpeed);
    }
