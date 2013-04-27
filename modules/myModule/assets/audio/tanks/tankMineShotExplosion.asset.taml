@@ -1,5 +1,0 @@
-<AudioAsset
-    AssetName="tankMineShotExplosionSound"
-    AssetAutoUnload="0"
-    AudioFile="tankMineShotExplosion.wav"
-    Volume="0.90" />

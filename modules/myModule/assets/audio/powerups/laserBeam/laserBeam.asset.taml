@@ -1,6 +1,6 @@
 <AudioAsset
-    AssetName="tankLaserBeamSound"
+    AssetName="laserBeamSound"
     AssetAutoUnload="0"
-    AudioFile="tankLaserBeam.wav"
+    AudioFile="laserBeam.wav"
     Looping="true"
     Volume="0.90"/>

@@ -1,0 +1,5 @@
+<AudioAsset
+    AssetName="teleportReloadSound"
+    AssetAutoUnload="0"
+    AudioFile="teleportReload.wav"
+    Volume="0.80" />

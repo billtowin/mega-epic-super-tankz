@@ -1,0 +1,5 @@
+<AudioAsset
+    AssetName="chargeShotSound"
+    AssetAutoUnload="0"
+    AudioFile="chargeShot.wav"
+    Volume="0.90" />

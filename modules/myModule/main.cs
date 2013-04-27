@@ -80,7 +80,8 @@ function MyModule::create( %this )
    
    $p1TankFrame = 0;
    $p2TankFrame = 8;
-   $maxTankFrame = 64; 
+   $maxTankFrame = 64;
+   alxPlay("MyModule:introMusic");
    %this.resetMenu();
 }
 
@@ -95,7 +96,7 @@ function MyModule::resetMenu(%this)
       
    %this.unbind();
    
-   alxStopAll();
+   //alxStopAll();
    myScene.clear();
    
    %id = %this.getId();
@@ -169,6 +170,7 @@ function MyModule::resetMap1(%this)
    alxStopAll();
    myScene.clear();
    
+   alxPlay("MyModule:gameplayMusic");
    myScene.add(createBackground());
    
    %tankP1 = createPlayer1Tank($p1TankFrame, -45, 0, -90);

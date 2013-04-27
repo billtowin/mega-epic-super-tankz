@@ -31,7 +31,7 @@ function TeleportBehavior::stopSounds(%this)
 
 function TeleportBehavior::loadTeleport(%this)
 {
-   %this.reloadSound = alxPlay("MyModule:tankTeleportReloadSound");
+   %this.reloadSound = alxPlay("MyModule:teleportReloadSound");
    %this.isLoaded = true;
 }
 
@@ -43,7 +43,7 @@ function TeleportBehavior::teleport(%this)
       %teleportOffset = Vector2Direction(%adjustedAngle, %this.teleportDistance);
       %this.owner.Position = %this.owner.Position.x + %teleportOffset.x SPC %this.owner.Position.y + %teleportOffset.y;
       
-      %this.teleportSound = alxPlay("MyModule:tankTeleportSound");
+      %this.teleportSound = alxPlay("MyModule:teleportSound");
       %this.isLoaded = false;
       %this.reloadSchedule = %this.schedule(%this.reloadTime, loadTeleport);
    }

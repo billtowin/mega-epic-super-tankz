@@ -1,0 +1,5 @@
+<AudioAsset
+    AssetName="shotExplosionSound"
+    AssetAutoUnload="0"
+    AudioFile="shotExplosion.wav"
+    Volume="0.90" />

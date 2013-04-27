@@ -68,7 +68,7 @@ function TankMovementBehavior::updateMovement(%this, %speed)
 function TankMovementBehavior::moveForward(%this)
 {
    %this.stopSounds();
-   %this.movingSound = alxPlay("MyModule:tankMovingSound2");
+   %this.movingSound = alxPlay("MyModule:tankMovingSound");
    %this.animate(false);
    %this.updateMovement(%this.forwardSpeed);
 }
@@ -76,7 +76,7 @@ function TankMovementBehavior::moveForward(%this)
 function TankMovementBehavior::moveBackward(%this)
 {
    %this.stopSounds();
-   %this.movingSound = alxPlay("MyModule:tankMovingSound2");
+   %this.movingSound = alxPlay("MyModule:tankMovingSound");
    %this.animate(true);
    %this.updateMovement(-%this.backwardSpeed);
 }

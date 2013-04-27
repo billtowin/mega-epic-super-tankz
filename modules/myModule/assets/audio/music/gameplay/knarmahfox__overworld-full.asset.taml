@@ -1,0 +1,6 @@
+<AudioAsset
+    AssetName="gameplayMusic"
+    AssetAutoUnload="0"
+    AudioFile="knarmahfox__overworld-full.wav"
+    Volume="0.55"
+    Looping="true" />

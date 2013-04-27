@@ -1,6 +1,0 @@
-<AudioAsset
-    AssetName="tankMovingSound1"
-    AssetAutoUnload="0"
-    AudioFile="tankMoving1.wav"
-    Looping="true"
-    Volume="0.75"/>

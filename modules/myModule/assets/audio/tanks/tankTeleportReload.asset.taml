@@ -1,5 +1,0 @@
-<AudioAsset
-    AssetName="tankTeleportReloadSound"
-    AssetAutoUnload="0"
-    AudioFile="tankTeleportReload.wav"
-    Volume="0.80" />

@@ -37,7 +37,7 @@ function ChargeShotBehavior::stopSounds(%this)
 
 function ChargeShotBehavior::startCharging(%this)
 {
-   %this.chargeSound = alxPlay("MyModule:tankChargeShotChargingSound");
+   %this.chargeSound = alxPlay("MyModule:chargeShotChargingSound");
    %this.timeSpentCharging = 0;
    %this.chargingSchedule = %this.schedule(100, incrementCharge);
 }
@@ -54,7 +54,7 @@ function ChargeShotBehavior::incrementCharge(%this)
 
 function ChargeShotBehavior::loadShot(%this)
 {
-   %this.reloadSound = alxPlay("MyModule:tankChargeShotReloadSound");
+   %this.reloadSound = alxPlay("MyModule:chargeShotReloadSound");
    %this.isLoaded = true;
 }
 
@@ -75,7 +75,7 @@ function ChargeShotBehavior::shoot(%this)
       %shotLevel =  %this.timeSpentCharging / %this.maxChargeTime; //from 0 to 1.0
       
       %this.createChargeShot(%shotSpeed, %shotLevel);
-      %this.shotSound = alxPlay("MyModule:tankChargeShotSound2");
+      %this.shotSound = alxPlay("MyModule:chargeShotSound");
       %this.isLoaded = false;
       %this.reloadSchedule = %this.schedule(%this.reloadTime, loadShot);
    }
@@ -131,6 +131,6 @@ function ChargeShot::onCollision(%this, %object, %details)
 function ChargeShot::onDeath(%this)
 {
    %this.getScene().add(createExplosion(%this.Position.x SPC (%this.Position.y + 2), 5));
-   alxPlay("MyModule:tankShotExplosionSound");
+   alxPlay("MyModule:shotExplosionSound");
    %this.safeDelete();
 }

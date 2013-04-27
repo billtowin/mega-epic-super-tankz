@@ -36,7 +36,7 @@ function SpreadShotBehavior::stopSounds(%this)
 
 function SpreadShotBehavior::loadShot(%this)
 {
-   %this.reloadSound = alxPlay("MyModule:tankSpreadShotReloadSound");
+   %this.reloadSound = alxPlay("MyModule:spreadShotReloadSound");
    %this.isLoaded = true;
 }
 
@@ -45,7 +45,7 @@ function SpreadShotBehavior::spreadShot(%this)
    if(%this.isLoaded)
    {
       %this.createSpreadShot();
-      %this.shotSound = alxPlay("MyModule:tankSpreadShotSound");
+      %this.shotSound = alxPlay("MyModule:spreadShotSound");
       %this.isLoaded = false;
       %this.reloadSchedule = %this.schedule(%this.reloadTime, loadShot);
    }
@@ -95,6 +95,6 @@ function SpreadShot::onCollision(%this, %object, %details)
 function SpreadShot::onDeath(%this)
 {
    %this.getScene().add(createExplosion(%this.Position.x SPC (%this.Position.y + 2), 3));
-   alxPlay("MyModule:tankShotExplosionSound");
+   alxPlay("MyModule:shotExplosionSound");
    %this.safeDelete();
 }

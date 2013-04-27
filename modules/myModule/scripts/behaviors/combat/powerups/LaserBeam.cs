@@ -33,7 +33,7 @@ function LaserBeamBehavior::beam(%this)
    if(%this.isLoaded)
    {
       %this.isLoaded = false;
-      %this.beamSound = alxPlay("MyModule:tankLaserBeamSound");
+      %this.beamSound = alxPlay("MyModule:laserBeamSound");
       %this.beamingSchedule = %this.schedule(%this.beamRefreshTime, incrementBeamTime);
       %this.beamSchedule = %this.schedule(%this.beamRefreshTime, createNextBeam);
    }
@@ -47,7 +47,7 @@ function LaserBeamBehavior::incrementBeamTime(%this)
 
 function LaserBeamBehavior::loadBeam(%this)
 {
-   %this.reloadSound = alxPlay("MyModule:tankChargeShotReloadSound");
+   %this.reloadSound = alxPlay("MyModule:chargeShotReloadSound");
    %this.isLoaded = true;
 }
 

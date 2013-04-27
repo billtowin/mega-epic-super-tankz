@@ -29,7 +29,7 @@ function MineShotBehavior::onBehaviorRemove(%this)
 
 function MineShotBehavior::loadMine(%this)
 {
-   %this.reloadSound = alxPlay("MyModule:tankSpreadShotReloadSound");
+   %this.reloadSound = alxPlay("MyModule:spreadShotReloadSound");
    %this.isLoaded = true;
 }
 function MineShotBehavior::mineShot(%this)
@@ -37,14 +37,14 @@ function MineShotBehavior::mineShot(%this)
    if(%this.ammoSpent < %this.ammoCount && %this.isLoaded)
    {
       %this.createMineShot();
-      %this.shotSound = alxPlay("MyModule:tankSpreadShotSound");
+      %this.shotSound = alxPlay("MyModule:spreadShotSound");
       %this.ammoSpent += 1;
       %this.isLoaded = false;
       if(%this.ammoSpent < %this.ammoCount) {
          %this.reloadSchedule = %this.schedule(%this.reloadTime, loadMine);
       } else {
          //Out of Ammo
-         %this.outOfAmmoSound = alxPlay("MyModule:tankMineShotOutOfAmmoSound");
+         %this.outOfAmmoSound = alxPlay("MyModule:mineShotOutOfAmmoSound");
       }
    }
 }
@@ -103,6 +103,6 @@ function MineShot::onCollision(%this, %object, %details)
 function MineShot::onDeath(%this)
 {
    %this.getScene().add(createExplosion(%this.Position.x SPC (%this.Position.y + 2), 3));
-   alxPlay("MyModule:tankMineShotExplosionSound");
+   alxPlay("MyModule:mineShotExplosionSound");
    %this.safeDelete();
 }

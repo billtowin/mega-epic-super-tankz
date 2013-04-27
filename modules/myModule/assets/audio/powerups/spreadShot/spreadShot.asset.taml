@@ -1,0 +1,5 @@
+<AudioAsset
+    AssetName="spreadShotSound"
+    AssetAutoUnload="0"
+    AudioFile="spreadShot.wav"
+    Volume="0.90" />

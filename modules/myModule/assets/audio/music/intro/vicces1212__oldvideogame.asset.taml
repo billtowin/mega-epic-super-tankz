@@ -1,0 +1,6 @@
+<AudioAsset
+    AssetName="introMusic"
+    AssetAutoUnload="0"
+    AudioFile="vicces1212__oldvideogame.wav"
+    Volume="0.60"
+    Looping="true" />
