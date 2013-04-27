@@ -67,7 +67,8 @@ function MineShotBehavior::createMineShot(%this)
    %mine = new Sprite()
    {
       class = MineShot;
-      Image = "MyModule:landmineImage";
+      Image = "ToyAssets:BlankCircle";
+      BlendColor = "Gray";
       BodyType = dynamic;
       Size = 3;
       Position = (%this.owner.Position.x + %mineOffset.x) SPC (%this.owner.Position.y + %mineOffset.y);
