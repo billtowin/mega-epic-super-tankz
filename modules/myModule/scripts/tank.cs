@@ -73,31 +73,36 @@ function Tank::onCollision(%this, %object, %collisiondetails)
 {
    if(%object.class $= "Powerup")
    {
-      %this.powerupSound = alxPlay("MyModule:powerupSound");
       %object.powerupSpawner.onPickup();
-      %temp = %object.powerupBehavior;
-      if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior" || %temp $= "MineShotBehavior")
-      {
-         if(isObject(%this.secondaryWeapon))
-         {
-            cancel(%this.powerdownSchedule);
-            %this.secondaryWeapon.stopSounds();
-            %this.removeBehavior(%this.secondaryWeapon);
-            %this.secondaryWeapon = "";
-         }
-      }
-      
-      %powerupInstance = %object.powerupBehavior.createInstance();
-      %this.addBehavior(%powerupInstance);
-      if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior"|| %temp $= "MineShotBehavior")
-      {
-         %this.secondaryWeapon = %powerupInstance;
-      }
-      if(%powerupInstance.duration > 0)
-      {
-         %this.powerdownSchedule = %this.schedule(%powerupInstance.duration, powerDown, %powerupInstance); 
-      }
+      %this.onPowerupPickup(%object);
       %object.safeDelete();
+   }
+}
+
+function Tank::onPowerupPickup(%this, %pickup)
+{
+   %this.powerupSound = alxPlay("MyModule:powerupSound");
+   %temp = %pickup.powerupBehavior;
+   if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior" || %temp $= "MineShotBehavior")
+   {
+      if(isObject(%this.secondaryWeapon))
+      {
+         cancel(%this.powerdownSchedule);
+         %this.secondaryWeapon.stopSounds();
+         %this.removeBehavior(%this.secondaryWeapon);
+         %this.secondaryWeapon = "";
+      }
+   }
+   
+   %powerupInstance = %pickup.powerupBehavior.createInstance();
+   %this.addBehavior(%powerupInstance);
+   if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior"|| %temp $= "MineShotBehavior")
+   {
+      %this.secondaryWeapon = %powerupInstance;
+   }
+   if(%powerupInstance.duration > 0)
+   {
+      %this.powerdownSchedule = %this.schedule(%powerupInstance.duration, powerDown, %powerupInstance); 
    }
 }
 
