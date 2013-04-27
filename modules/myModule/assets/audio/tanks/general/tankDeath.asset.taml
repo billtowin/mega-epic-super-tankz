@@ -2,4 +2,4 @@
     AssetName="tankDeathSound"
     AssetAutoUnload="0"
     AudioFile="tankDeath.wav"
-    Volume="1.0" />
+    Volume="0.9" />
