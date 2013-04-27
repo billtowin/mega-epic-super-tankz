@@ -7,14 +7,14 @@ if (!isObject(LaserBeamBehavior))
    %template.description  = "Tank Laser Shot projectile";
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
-   %template.addBehaviorField(damage, "Damage per laser beam", int, 5);
+   %template.addBehaviorField(damage, "Damage per tick/refresh", int, 5);
 
    %template.addBehaviorField(beamWidth, "Width of Laser beam", float, 0.8);
    %template.addBehaviorField(beamLength, "Range/Length of laser beam", float, 22);
    
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2500);
    %template.addBehaviorField(maxBeamTime, "Max Beam Time", int, 600);
-   %template.addBehaviorField(beamRefreshTime, "Time between beam refreshs (for positioning)", int, 50);
+   %template.addBehaviorField(beamRefreshTime, "Time between beam ticks/refreshes for damage and positioning", int, 50);
 }
 
 function LaserBeamBehavior::onBehaviorAdd(%this)
@@ -35,7 +35,7 @@ function LaserBeamBehavior::beam(%this)
       %this.isLoaded = false;
       %this.beamSound = alxPlay("MyModule:laserBeamSound");
       %this.beamingSchedule = %this.schedule(%this.beamRefreshTime, incrementBeamTime);
-      %this.beamSchedule = %this.schedule(%this.beamRefreshTime, createNextBeam);
+      %this.beamSchedule = %this.schedule(%this.beamRefreshTime, updateBeamPosition);
    }
 }
 
@@ -51,15 +51,19 @@ function LaserBeamBehavior::loadBeam(%this)
    %this.isLoaded = true;
 }
 
-function LaserBeamBehavior::createNextBeam(%this)
+function LaserBeamBehavior::updateBeamPosition(%this)
 {
+   if(!isObject(%this.currentBeam)) {
+      %this.createBeam();
+   }
    if(%this.timeSpentBeaming <= %this.maxBeamTime)
    {
-      %this.createBeam();
-      %this.beamSchedule = %this.schedule(%this.beamRefreshTime, createNextBeam);
+      %this.currentBeam.Position = %this.owner.getWorldPoint( 0 SPC (%this.owner.Size.height / 2 + %this.beamLength / 1.9));
+      %this.beamSchedule = %this.schedule(%this.beamRefreshTime, updateBeamPosition);
    } else {
       cancel(%this.beamingSchedule);
       cancel(%this.beamSchedule);
+      cancel(%this.currentBeam.collisionCheckSchedule);
       %this.stopSounds();
       %this.timeSpentBeaming = 0;
       %this.reloadSchedule = %this.schedule(%this.reloadTime, loadBeam);
@@ -74,11 +78,6 @@ function LaserBeamBehavior::stopSounds(%this)
 
 function LaserBeamBehavior::createBeam(%this)
 {
-   %adjustedAngle = getPositiveAngle(%this.owner);
-   
-   //Calculate a direction from an Angle and Magnitude
-   %beamOffset= Vector2Direction(%adjustedAngle,%this.owner.Size.height / 2 + %this.beamLength / 1.9);
-   
    // Create the sprite.
    %beam = new Sprite()
    {
@@ -90,30 +89,35 @@ function LaserBeamBehavior::createBeam(%this)
       Size = %this.beamWidth SPC %this.beamLength;
       SceneLayer = 2;
       SceneGroup = 2;
-      Position = (%this.owner.Position.x + %beamOffset.x) SPC (%this.owner.Position.y + %beamOffset.y);
-      CollisionCallback = true;
+      Position = %this.owner.getWorldPoint( 0 SPC (%this.owner.Size.height / 2 + %this.beamLength / 1.9));
    };
-   //Sets the collision shape to a circle
-   %beam.createPolygonBoxCollisionShape();
-   %beam.setCollisionGroups("0 1 2 5");
    
-   %dealDmgBehavior = DealsDamageBehavior.createInstance();
-   %dealDmgBehavior.strength = %this.damage;
-   %dealDmgBehavior.killOnHit = true;
-   %beam.addBehavior(%dealDmgBehavior);
+   %beam.dieSchedule = %beam.schedule(%this.maxBeamTime,safeDelete);
+   %beam.collisionCheckSchedule = %this.schedule(%this.beamRefreshTime, checkForCollisionsManually);
    
-   %beam.dieSchedule = %beam.schedule(%this.beamRefreshTime,safeDelete);
-   // Add the sprite to the scene.
+   %this.currentBeam = %beam;
    %this.owner.getScene().add( %beam );
 }
 
-function LaserBeam::onCollision(%this, %object, %details)
+function LaserBeam::checkForCollisionsManually(%this)
 {
-   if(%object.class $= "Scenery" && %object.isBreakable)
+   %startP = %this.getWorldPoint(0 SPC (- %this.Size.height));
+   %endP = %this.getWorldPoint(0 SPC %this.Size.height);
+   %rayPicked = %this.owner.getScene().pickRayCollision(%startP, %endP, -1,-1);
+   for(%i = 0 ; %i < getWordCount(%rayPicked); %i++) 
    {
-      %object.safeDelete();
+      %obj = getWord(%rayPicked, %i);
+      %takesDamage = %obj.getBehavior("TakesDamageBehavior");
+      if (isObject(%takesDamage)) {
+         %takesDamage.takeDamage(%this.damage);
+      }
+      
+      if(%obj.class $= "MineShot" || %obj.class $= "SpreadShot" || %obj.class $= "ChargeShot") {
+         %obj.onDeath();  
+      }
+      if(%obj.class $= "Scenery" && %obj.isBreakable) {
+         %obj.safeDelete();
+      }
    }
-   if(%object.class $= "MineShot" || %object.class $= "SpreadShot" || %object.class $= "ChargeShot") {
-      %object.onDeath();  
-   }
+   %this.collisionCheckSchedule = %this.schedule(%this.beamRefreshTime, checkForCollisionsManually);
 }

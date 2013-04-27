@@ -58,12 +58,6 @@ function MineShotBehavior::stopSounds(%this)
 
 function MineShotBehavior::createMineShot(%this)
 {
-   %adjustedAngle = getPositiveAngle(%this.owner);
-   
-   //Calculate a direction from an Angle and Magnitude
-   %mineOffset= Vector2Direction(%adjustedAngle-180,%this.owner.Size.height * 0.75);
-   
-   // Create the sprite.
    %mine = new Sprite()
    {
       class = MineShot;
@@ -71,7 +65,7 @@ function MineShotBehavior::createMineShot(%this)
       BlendColor = "Gray";
       BodyType = dynamic;
       Size = 3;
-      Position = (%this.owner.Position.x + %mineOffset.x) SPC (%this.owner.Position.y + %mineOffset.y);
+      Position = %this.owner.getWorldPoint(0 SPC (-%this.owner.Size.height * 0.75) );
       LinearDamping = 2.0;
       AngularDamping = 1.0;
       SceneLayer = 1;

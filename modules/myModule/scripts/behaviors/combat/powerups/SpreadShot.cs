@@ -53,7 +53,6 @@ function SpreadShotBehavior::spreadShot(%this)
 
 function SpreadShotBehavior::createSpreadShot(%this)
 { 
-   %adjustedAngle = getPositiveAngle(%this.owner);
    for(%i = 0; %i < getWordCount(%this.shotAngles); %i++)
    {
       %shot = new Sprite()
@@ -68,8 +67,7 @@ function SpreadShotBehavior::createSpreadShot(%this)
          SceneGroup = 2;
          CollisionCallback = true;
       };
-      %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.6);
-      %shot.Position = (%this.owner.Position.x + %shotOffset.x) SPC (%this.owner.Position.y + %shotOffset.y);
+      %shot.Position = %this.owner.getWorldPoint(0 SPC (%this.owner.Size.height * 0.5 + %shot.Size.height * 0.6) );
       %shot.setLinearVelocityPolar(%this.owner.Angle - 180 + getWord(%this.shotAngles, %i),%this.speed);
       %shot.createCircleCollisionShape(%shot.Size.height / 2);
       %shot.setCollisionGroups("0 1 4");

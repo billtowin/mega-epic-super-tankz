@@ -102,9 +102,7 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
       
       shotLevel = %shotLevel;
    };
-   %adjustedAngle = getPositiveAngle(%this.owner); 
-   %shotOffset = Vector2Direction(%adjustedAngle,%this.owner.Size.height * 0.5 + %shot.Size.height * 0.6);
-   %shot.Position = (%this.owner.Position.x + %shotOffset.x) SPC (%this.owner.Position.y + %shotOffset.y);
+   %shot.Position = %this.owner.getWorldPoint(0 SPC %this.owner.Size.height * 0.5 + %shot.Size.height * 0.6);
    
    %shot.setLinearVelocityPolar(%this.owner.Angle - 180, %shotSpeed);
    %shot.createCircleCollisionShape( %shot.Size.height / 2);
