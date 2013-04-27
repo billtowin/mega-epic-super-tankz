@@ -37,9 +37,12 @@ function ChargeShotBehavior::stopSounds(%this)
 
 function ChargeShotBehavior::startCharging(%this)
 {
-   %this.chargeSound = alxPlay("MyModule:chargeShotChargingSound");
-   %this.timeSpentCharging = 0;
-   %this.chargingSchedule = %this.schedule(100, incrementCharge);
+   if(%this.isLoaded)
+   {   
+      %this.chargeSound = alxPlay("MyModule:chargeShotChargingSound");
+      %this.timeSpentCharging = 0;
+      %this.chargingSchedule = %this.schedule(100, incrementCharge);
+   }
 }
 
 function ChargeShotBehavior::incrementCharge(%this)
