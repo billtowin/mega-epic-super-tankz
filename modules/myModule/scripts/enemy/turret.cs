@@ -23,6 +23,7 @@ function createTurret(%x_pos, %y_pos, %range, %angle)
    %takedamage = TakesDamageBehavior.createInstance();
    %takedamage.health = 60;
    %takedamage.maxHealth = 60;
+   %takedamage.tintRedForDamage = false;
    %turret.addBehavior(%takedamage);
    
    return %turret;
