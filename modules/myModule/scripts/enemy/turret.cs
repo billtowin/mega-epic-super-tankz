@@ -35,7 +35,7 @@ function createLaserBeamTurret(%x_pos, %y_pos, %range, %angle)
    %turret.BlendColor = "Red";
    %laserBeam = LaserBeamBehavior.createInstance();
    %laserBeam.duration = -1;
-   %laserBeam.damage = 5;
+   %laserBeam.damage = 3;
    %laserBeam.beamWidth = %laserBeam.beamWidth; 
    %laserBeam.beamLength = %range;
    %laserBeam.reloadTime = 500;
