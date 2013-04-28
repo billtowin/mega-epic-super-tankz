@@ -1,0 +1,7 @@
+<ImageAsset
+  AssetName="chargeShotImage"
+  ImageFile="chargeShot.png"
+  CellCountX="4"
+  CellCountY="2"
+  CellHeight="32"
+  CellWidth="32" />

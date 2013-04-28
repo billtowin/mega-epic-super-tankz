@@ -9,8 +9,8 @@ if (!isObject(ChargeShotBehavior))
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, -1);
    %template.addBehaviorField(damage, "Damage per shot", int, 25);
 
-   %template.addBehaviorField(minSpeed, "Normal Speed", float, 45);
-   %template.addBehaviorField(maxSpeed, "Speed when fully charged", float, 85);
+   %template.addBehaviorField(minSpeed, "Normal Speed", float, 17);
+   %template.addBehaviorField(maxSpeed, "Speed when fully charged", float, 70);
    
    %template.addBehaviorField(maxChargeTime, "Charge Time (in ms)", int, 1000);
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1000);
@@ -90,11 +90,10 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
    %shot = new Sprite()
    {
       class = ChargeShot;
-      Image = "ToyAssets:WhiteSphere";
-      BlendColor = "Black";
+      Animation = "MyModule:chargeShotAnim";
       BodyType = dynamic;
       Bullet = true;
-      Size = 1.3;
+      Size = 1.6;
       SceneLayer = 1;
       SceneGroup = 2;
       CollisionCallback = true;
