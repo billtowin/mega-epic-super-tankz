@@ -106,23 +106,19 @@ function LaserBeam::checkForCollisionsManually(%this)
 {
    %startP = %this.getWorldPoint(0 SPC (- %this.Size.height / 2));
    %endP = %this.getWorldPoint(0 SPC %this.Size.height / 2);
-   %rayPicked = %this.getScene().pickRayCollision(%startP, %endP, -1,-1);
+   %rayPicked = %this.getScene().pickRay(%startP, %endP, -1,-1);
    for(%i = 0 ; %i < getWordCount(%rayPicked); %i++)
    {
       %obj = getWord(%rayPicked, %i);
-      //TODO: WEIRD BUG WITH %obj NOT BEING AN OBJECT BUT AN FLOAT NUMBER????
-      if(isObject(%obj)) 
-      {
-         %takesDamage = %obj.getBehavior("TakesDamageBehavior");
-         if (isObject(%takesDamage)) {
-            %takesDamage.takeDamage(%this.damage);
-         }
-         if(%obj.class $= "MineShot" || %obj.class $= "SpreadShot" || %obj.class $= "ChargeShot") {
-            %obj.onDeath();  
-         }
-         if(%obj.class $= "Scenery" && %obj.isBreakable) {
-            %obj.safeDelete();
-         }
+      %takesDamage = %obj.getBehavior("TakesDamageBehavior");
+      if (isObject(%takesDamage)) {
+         %takesDamage.takeDamage(%this.damage);
+      }
+      if(%obj.class $= "MineShot" || %obj.class $= "SpreadShot" || %obj.class $= "ChargeShot") {
+         %obj.onDeath();  
+      }
+      if(%obj.class $= "Scenery" && %obj.isBreakable) {
+         %obj.safeDelete();
       }
    }
    %this.collisionCheckSchedule = %this.schedule(%this.beamRefreshTime, checkForCollisionsManually);

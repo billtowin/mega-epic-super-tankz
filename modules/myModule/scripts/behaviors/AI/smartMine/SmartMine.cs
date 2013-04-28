@@ -30,9 +30,8 @@ function SmartMineBehavior::scanForTargets(%this)
       if(%obj.class $= Tank) 
       {
          %isTankNear = true;
-         
          //Check if there is a wall blocking the path
-         %rayPicked = %this.owner.getScene().pickRayCollision(%this.owner.Position, %obj.Position, -1, -1);
+         %rayPicked = %this.owner.getScene().pickRay(%this.owner.Position, %obj.Position, -1, -1);
          %isWallBlockingPath = false;
          for(%j = 0; %j < getWordCount(%rayPicked) ; %j++)
          {

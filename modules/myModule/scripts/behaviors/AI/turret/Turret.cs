@@ -77,7 +77,7 @@ function TurretBehavior::scanForTargets(%this)
    if(%minTargetIndex < getWordCount(%possibleTargets) && %minTargetIndex >= 0)
    {
       %target = getWord(%possibleTargets, %minTargetIndex);
-      %rayPicked = %this.owner.getScene().pickRayCollision(%this.owner.Position, %target.Position, -1, -1);
+      %rayPicked = %this.owner.getScene().pickRay(%this.owner.Position, %target.Position, -1, -1);
       %isWallBlockingPath = false;
       for(%j = 0; %j < getWordCount(%rayPicked) ; %j++)
       {
