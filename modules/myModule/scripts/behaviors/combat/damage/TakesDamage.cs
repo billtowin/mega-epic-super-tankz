@@ -22,25 +22,18 @@ function TakesDamageBehavior::onBehaviorRemove(%this)
 
 function TakesDamageBehavior::takeDamage(%this, %amount)
 {
-   if(%amount > 0){
+   if(%amount > 0) {
       %slowOnDamage = %this.owner.getBehavior("SlowOnDamageBehavior");
       if (isObject(%slowOnDamage))
          %slowOnDamage.onDamage(%amount);
    }
-   
    %newHealth = %this.health - %amount;
-   
-   if(%newHealth >= %this.maxHealth){
-      %newHealth = %this.maxHealth;   
-   }
-   %this.health = %newHealth;
-   
+   %this.health = %newHealth >= %this.maxHealth ? %this.maxHealth : %newHealth;
    if (%this.health <= 0)
    {
       %this.owner.onDeath();
       return;
    }
-   
    if(%this.tintRedForDamage)
    {
       %tint = %this.health / %this.startHealth;

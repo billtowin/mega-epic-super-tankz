@@ -33,18 +33,12 @@ function FixedHealthBarBehavior::onBehaviorRemove(%this)
 
 function FixedHealthBarBehavior::onUpdate(%this)
 {
-
    %hObject = %this.healthObject.getBehavior("TakesDamageBehavior");
    if (!isObject(%hObject))
       return;
-
-   %currentHealth=%hObject.health;
-
-   if (%currentHealth<0)
-      %currentHealth = 0;
-      
-   %healthRatio = (%currentHealth) / (%this.maxHealth);
-   
+   %curHealth = %hObject.health;
+   %curHealth = %curHealth < 0 ? 0 : %curHealth;      
+   %healthRatio = %curHealth / %this.maxHealth;   
    %this.updateSizeAndPosition(%healthRatio);
 }
 
@@ -56,7 +50,6 @@ function FixedHealthBarBehavior::updateSizeAndPosition(%this, %hRatio)
    %xPos = %this.owner.Position.x;
    %yPos = %this.owner.Position.y;
    %fixedEdge = %this.fixedEdge;
-   
    switch$ (%fixedEdge)
    {
       case "Top":
@@ -85,6 +78,5 @@ function FixedHealthBarBehavior::updateSizeAndPosition(%this, %hRatio)
       case "Center Vertical":
          %newSize = (%this.maxSizeY * %hRatio);
          %this.owner.Size.y = %newSize;     
-   }   
-
+   }
 }

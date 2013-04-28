@@ -24,8 +24,7 @@ function TurretAIBehavior::onBehaviorAdd(%this)
    %this.hasAbilityStarted = false;
    
    %turretAbility = %this.owner.getBehavior("TurretAbilityBehavior");
-   if (!isObject(%turretAbility))
-   {
+   if (!isObject(%turretAbility)) {
       %turretAbility = TurretAbilityBehavior.createInstance();
       %this.owner.addBehavior(%turretAbility);
    }
@@ -91,8 +90,7 @@ function TurretAIBehavior::scanForTargets(%this)
          if(!%this.hasAbilityStarted) 
          {
             %turretAbility = %this.owner.getBehavior("TurretAbilityBehavior");
-            if (isObject(%turretAbility))
-            {
+            if (isObject(%turretAbility)) {
                %this.hasAbilityStarted = true;
                %turretAbility.startAbility();
             }

@@ -81,9 +81,7 @@ function createSpreadShotTurret(%x_pos, %y_pos, %range, %angle)
 function createRandomTurret(%x_pos, %y_pos, %range, %angle, %choices)
 {
    %defaultChoices = "0 1 2";
-   if(getWordCount(%choices) == 0) {
-      %choices = %defaultChoices;   
-   }
+   %choices = getWordCount(%choices) == 0 ? %defaultChoices : %choices;
    %rand = getWord(%choices, getRandom(0, getWordCount(%choices)-1));
    switch(%rand)
    {
