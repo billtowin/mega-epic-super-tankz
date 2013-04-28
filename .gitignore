@@ -20,3 +20,6 @@
 
 *.sh
 build/
+
+# Photoshop
+*.psd
