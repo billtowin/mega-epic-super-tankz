@@ -93,7 +93,7 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
       Animation = "MyModule:chargeShotAnim";
       BodyType = dynamic;
       Bullet = true;
-      Size = 1.4;
+      Size = 1.5;
       SceneLayer = 1;
       SceneGroup = 2;
       CollisionCallback = true;
