@@ -1,5 +1,5 @@
 <TorsionProject>
-<Name>Mega Tank Arena</Name>
+<Name>Mega Epic Super Tankz</Name>
 <WorkingDir/>
 <EntryScript>main.cs</EntryScript>
 <DebugHook>dbgSetParameters( #port#, "#password#", true );</DebugHook>
