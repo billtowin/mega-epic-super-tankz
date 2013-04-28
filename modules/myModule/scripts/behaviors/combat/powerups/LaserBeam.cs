@@ -10,7 +10,7 @@ if (!isObject(LaserBeamBehavior))
    %template.addBehaviorField(damage, "Damage per tick/refresh", int, 3);
 
    %template.addBehaviorField(beamWidth, "Width of Laser beam", float, 0.8);
-   %template.addBehaviorField(beamLength, "Range/Length of laser beam", float, 22);
+   %template.addBehaviorField(beamLength, "Range/Length of laser beam", float, 25);
    
    %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2500);
    %template.addBehaviorField(maxBeamTime, "Max Beam Time", int, 600);
