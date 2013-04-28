@@ -1,6 +1,6 @@
-if (!isObject(TurretBehavior))
+if (!isObject(TurretAIBehavior))
 {
-   %template = new BehaviorTemplate(TurretBehavior);
+   %template = new BehaviorTemplate(TurretAIBehavior);
 
    %template.friendlyName = "Turret";
    %template.behaviorType = "AI";
@@ -19,7 +19,7 @@ if (!isObject(TurretBehavior))
    // if there is a perpendicular line formed by the Tank's Position and the mouth line less that the targetBuffer, shoot at target
 }
 
-function TurretBehavior::onBehaviorAdd(%this)
+function TurretAIBehavior::onBehaviorAdd(%this)
 {
    %this.hasAbilityStarted = false;
    
@@ -32,7 +32,7 @@ function TurretBehavior::onBehaviorAdd(%this)
    %this.scanSchedule = %this.schedule(%this.scanUpdateTime, scanForTargets);
 }
 
-function TurretBehavior::onBehaviorRemove(%this)
+function TurretAIBehavior::onBehaviorRemove(%this)
 {
    %turretAbility = %this.owner.getBehavior("TurretAbilityBehavior");
    if (isObject(%turretAbility)){
@@ -40,7 +40,7 @@ function TurretBehavior::onBehaviorRemove(%this)
    }
 }
 
-function TurretBehavior::scanForTargets(%this)
+function TurretAIBehavior::scanForTargets(%this)
 {
    %picked = %this.owner.getScene().pickCircle(%this.owner.Position, %this.rangeRadius, -1, -1, "collision");
    %isAnyTargetAvailable = false;
