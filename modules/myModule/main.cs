@@ -53,6 +53,7 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/combat/powerups/Regeneration.cs");
    exec("./scripts/behaviors/combat/powerups/Teleport.cs");
    exec("./scripts/behaviors/combat/powerups/SpeedBoost.cs");
+   exec("./scripts/behaviors/combat/powerups/Invisibility.cs");
    
    exec("./scripts/behaviors/combat/damage/TakesDamage.cs");
    exec("./scripts/behaviors/combat/damage/DealsDamage.cs");
@@ -63,7 +64,6 @@ function MyModule::create( %this )
    //AI
    exec("./scripts/behaviors/AI/turret/TurretAbility.cs");
    exec("./scripts/behaviors/AI/turret/TurretAI.cs");
-   exec("./scripts/behaviors/AI/smartMine/SmartMine.cs");
    
    //Teams
    exec("./scripts/behaviors/team/Team.cs");

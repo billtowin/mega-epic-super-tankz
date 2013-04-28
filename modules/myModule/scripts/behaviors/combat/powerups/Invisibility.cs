@@ -1,6 +1,6 @@
-if (!isObject(SmartMineBehavior))
+if (!isObject(InvisibilityBehavior))
 {
-   %template = new BehaviorTemplate(SmartMineBehavior);
+   %template = new BehaviorTemplate(InvisibilityBehavior);
 
    %template.friendlyName = "SmartMine Behavior";
    %template.behaviorType = "AI";
@@ -11,25 +11,25 @@ if (!isObject(SmartMineBehavior))
    
 }
 
-function SmartMineBehavior::onBehaviorAdd(%this)
+function InvisibilityBehavior::onBehaviorAdd(%this)
 {
    %this.scanSchedule = %this.schedule(%this.scanUpdateTime, scanForTargets);
 }
 
-function SmartMineBehavior::onBehaviorRemove(%this)
+function InvisibilityBehavior::onBehaviorRemove(%this)
 {
 }
 
-function SmartMineBehavior::scanForTargets(%this)
+function InvisibilityBehavior::scanForTargets(%this)
 {
    %picked = %this.owner.getScene().pickCircle(%this.owner.Position,%this.rangeRadius, -1, -1, "collision");
-   %isTankNear = false;
+   %isVehicleNear = false;
    for(%i = 0; %i < getWordCount(%picked) ; %i++)
    {
       %obj = getWord(%picked,%i);
       if(%obj.type $= Vehicle)
       {
-         %isTankNear = true;
+         %isVehicleNear = true;
          //Check if there is a wall blocking the path
          %rayPicked = %this.owner.getScene().pickRay(%this.owner.Position, %obj.Position, -1, -1);
          %isWallBlockingPath = false;
@@ -43,6 +43,10 @@ function SmartMineBehavior::scanForTargets(%this)
          }
       }
    }
-   %this.owner.Visible = %isTankNear && !%isWallBlockingPath;
+   if(%isVehicleNear && !%isWallBlockingPath) {
+      %this.owner.onHide();   
+   } else {
+      %this.owner.onReveal();   
+   }
    %this.scanSchedule = %this.schedule(%this.scanUpdateTime, scanForTargets);
 }

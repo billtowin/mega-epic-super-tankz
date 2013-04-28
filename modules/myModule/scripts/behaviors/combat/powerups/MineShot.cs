@@ -61,8 +61,8 @@ function MineShotBehavior::createMineShot(%this)
    %mine = new Sprite()
    {
       class = MineShot;
-      Image = "ToyAssets:BlankCircle";
-      BlendColor = "Gray";
+      Image = "MyModule:landmineImage";
+      Frame = 0;
       BodyType = dynamic;
       Size = 3;
       Position = %this.owner.getWorldPoint(0 SPC (-%this.owner.Size.height * 0.75) );
@@ -71,14 +71,17 @@ function MineShotBehavior::createMineShot(%this)
       SceneLayer = 1;
       SceneGroup = 5;
       CollisionCallback = true;
+      
+      isHidden = false;
+      isAnimating = false;
    };
    %mine.setLinearVelocityPolar(%this.owner.Angle, %this.speed);
    //Sets the collision shape to a circle
    %mine.createCircleCollisionShape(%mine.Size.x / 2);
    %mine.setCollisionGroups("0 1 4 5");
    
-   %smartMineBehavior = SmartMineBehavior.createInstance();
-   %mine.addBehavior(%smartMineBehavior);
+   %invisibility = InvisibilityBehavior.createInstance();
+   %mine.addBehavior(%invisibility);
    
    %dealDmgBehavior = DealsDamageBehavior.createInstance();
    %dealDmgBehavior.strength = %this.damage;
@@ -89,6 +92,30 @@ function MineShotBehavior::createMineShot(%this)
    // Add the sprite to the scene.
    %ownerScene = %this.owner.getScene();   
    %ownerScene.add( %mine );
+}
+
+function MineShot::setIsNotAnimating(%this)
+{
+   %this.isAnimating = false;
+}
+function MineShot::onHide(%this)
+{
+   if(%this.isHidden && !%this.isAnimating) {
+      %this.isAnimating = true;
+      %this.isHidden = false;
+      %this.Animation = "MyModule:landmineEmergeAnim";
+      %this.animatingSchedule = %this.schedule(2000, setIsNotAnimating);
+   }
+}
+
+function MineShot::onReveal(%this)
+{
+   if(!%this.isHidden && !%this.isAnimating) {
+      %this.isAnimating = true;
+      %this.isHidden = true;
+      %this.Animation = "MyModule:landmineSubmergeAnim";
+      %this.animatingSchedule = %this.schedule(2000, setIsNotAnimating);
+   }
 }
 
 function MineShot::onCollision(%this, %object, %details)
