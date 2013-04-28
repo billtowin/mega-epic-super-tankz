@@ -53,13 +53,15 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/combat/powerups/Regeneration.cs");
    exec("./scripts/behaviors/combat/powerups/Teleport.cs");
    exec("./scripts/behaviors/combat/powerups/SpeedBoost.cs");
-   exec("./scripts/behaviors/combat/powerups/Invisibility.cs");
    
    exec("./scripts/behaviors/combat/damage/TakesDamage.cs");
    exec("./scripts/behaviors/combat/damage/DealsDamage.cs");
    exec("./scripts/behaviors/combat/damage/SlowOnDamage.cs");
    exec("./scripts/behaviors/combat/damage/FixedHealthBar.cs");
    exec("./scripts/behaviors/spawn/PowerupSpawner.cs");
+   
+   //Misc
+   exec("./scripts/behaviors/misc/ProximitySensor.cs");
    
    //AI
    exec("./scripts/behaviors/AI/turret/TurretAbility.cs");

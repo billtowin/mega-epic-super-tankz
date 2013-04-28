@@ -80,8 +80,8 @@ function MineShotBehavior::createMineShot(%this)
    %mine.createCircleCollisionShape(%mine.Size.x / 2);
    %mine.setCollisionGroups("0 1 4 5");
    
-   %invisibility = InvisibilityBehavior.createInstance();
-   %mine.addBehavior(%invisibility);
+   %proximitySensor = ProximitySensorBehavior.createInstance();
+   %mine.addBehavior(%proximitySensor);
    
    %dealDmgBehavior = DealsDamageBehavior.createInstance();
    %dealDmgBehavior.strength = %this.damage;
@@ -98,23 +98,23 @@ function MineShot::setIsNotAnimating(%this)
 {
    %this.isAnimating = false;
 }
-function MineShot::onHide(%this)
+function MineShot::onProximitySensorOn(%this)
 {
    if(%this.isHidden && !%this.isAnimating) {
       %this.isAnimating = true;
       %this.isHidden = false;
       %this.Animation = "MyModule:landmineEmergeAnim";
-      %this.animatingSchedule = %this.schedule(2000, setIsNotAnimating);
+      %this.animatingSchedule = %this.schedule(1500, setIsNotAnimating);
    }
 }
 
-function MineShot::onReveal(%this)
+function MineShot::onProximitySensorOff(%this)
 {
    if(!%this.isHidden && !%this.isAnimating) {
       %this.isAnimating = true;
       %this.isHidden = true;
       %this.Animation = "MyModule:landmineSubmergeAnim";
-      %this.animatingSchedule = %this.schedule(2000, setIsNotAnimating);
+      %this.animatingSchedule = %this.schedule(1500, setIsNotAnimating);
    }
 }
 
