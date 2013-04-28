@@ -22,7 +22,7 @@ Brainstorm:
       ☐ Medium Tank (Default?)
       ☐ Fat Tank
      Powerups/Weapons:
-       ☐ Speed Boost
+       ✔ Speed Boost @done (13-04-28 14:40)
        ☐ Homing Missile
        ☐ Machine Gun
 
@@ -73,7 +73,7 @@ Code Clarity:
   ☐ Clean up main.cs
   ☐ Add more clear descriptions to the various behaviors
   ☐ Add comments to every function everywhere
-  ☐ Rename myScene to something more descriptive
+  ✔ Rename myScene to something more descriptive @done (13-04-28 14:43)
 
 Weapons:
 

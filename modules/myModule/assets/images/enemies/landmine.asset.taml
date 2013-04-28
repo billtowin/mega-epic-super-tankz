@@ -1,3 +1,7 @@
 <ImageAsset
   AssetName="landmineImage"
-  ImageFile="landmine.png" />
+  ImageFile="landmine.png"
+  CellCountX="4"
+  CellCountY="5"
+  CellHeight="32"
+  CellWidth="32" />
