@@ -110,6 +110,7 @@ function LaserBeam::checkForCollisionsManually(%this)
    for(%i = 0 ; %i < getWordCount(%rayPicked); %i++)
    {
       %obj = getWord(%rayPicked, %i);
+      //TODO: WEIRD BUG WITH %obj NOT BEING AN OBJECT BUT AN FLOAT NUMBER????
       if(isObject(%obj)) 
       {
          %takesDamage = %obj.getBehavior("TakesDamageBehavior");
