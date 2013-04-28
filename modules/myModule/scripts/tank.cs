@@ -4,6 +4,7 @@ function createBasicTank(%initialFrame, %x_pos, %y_pos)
    %tank = new Sprite()
    {
       class = Tank;
+      type = Vehicle;
       Image = "myModule:manyTanksImage";
       Frame = %initialFrame;      //Valid Frames: 0 to 7
       FlipY = true;

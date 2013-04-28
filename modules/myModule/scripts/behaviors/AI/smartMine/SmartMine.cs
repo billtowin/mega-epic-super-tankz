@@ -27,7 +27,7 @@ function SmartMineBehavior::scanForTargets(%this)
    for(%i = 0; %i < getWordCount(%picked) ; %i++)
    {
       %obj = getWord(%picked,%i);
-      if(%obj.class $= Tank) 
+      if(%obj.type $= Vehicle)
       {
          %isTankNear = true;
          //Check if there is a wall blocking the path
@@ -36,7 +36,7 @@ function SmartMineBehavior::scanForTargets(%this)
          for(%j = 0; %j < getWordCount(%rayPicked) ; %j++)
          {
             %possibleWall = getWord(%rayPicked,%j);
-            if(%possibleWall.class $= Wall) {
+            if(%possibleWall.type $= Wall) {
                %isWallBlockingPath = true;
                break;            
             }

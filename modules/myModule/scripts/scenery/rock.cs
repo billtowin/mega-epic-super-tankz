@@ -3,7 +3,8 @@ function createRock(%x_pos, %y_pos)
    // Create the sprite.
    %rock = new Sprite()
    {
-      class = Scenery;
+      class = Rock;
+      type = Scenery;
       isBreakable = false;
       Image = "myModule:rocksImage";
       Frame = getRandom(0,2);

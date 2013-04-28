@@ -117,7 +117,7 @@ function LaserBeam::checkForCollisionsManually(%this)
       if(%obj.class $= "MineShot" || %obj.class $= "SpreadShot" || %obj.class $= "ChargeShot") {
          %obj.onDeath();  
       }
-      if(%obj.class $= "Scenery" && %obj.isBreakable) {
+      if(%obj.type $= "Scenery" && %obj.isBreakable) {
          %obj.safeDelete();
       }
    }

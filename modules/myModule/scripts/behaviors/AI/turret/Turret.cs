@@ -51,7 +51,7 @@ function TurretBehavior::scanForTargets(%this)
       %obj = getWord(%picked,%i);
       %teamBehavior = %this.owner.getBehavior("TeamBehavior");
       %isEnemy = isObject(%teamBehavior) ? %teamBehavior.isEnemy(%obj): true;
-      if(%obj.class $= Tank && %isEnemy) 
+      if(%obj.type $= Vehicle && %isEnemy) 
       {
          %possibleTargets = !%isAnyTargetAvailable ? %obj : %possibleTargets SPC %obj;
          %isAnyTargetAvailable = true;
@@ -81,7 +81,7 @@ function TurretBehavior::scanForTargets(%this)
       for(%j = 0; %j < getWordCount(%rayPicked) ; %j++)
       {
          %possibleWall = getWord(%rayPicked,%j);
-         if(%possibleWall.class $= Wall) {
+         if(%possibleWall.type $= Wall) {
             %isWallBlockingPath = true;
             break;            
          }

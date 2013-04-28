@@ -83,8 +83,7 @@ function SpreadShotBehavior::createSpreadShot(%this)
 
 function SpreadShot::onCollision(%this, %object, %details)
 {
-   if(%object.class $= "Scenery" && %object.isBreakable)
-   {
+   if(%object.type $= "Scenery" && %object.isBreakable) {
       %object.safeDelete();
    }
    %this.onDeath();

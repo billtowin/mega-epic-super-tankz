@@ -3,7 +3,8 @@ function createCrate(%x_pos, %y_pos)
    // Create the sprite.
    %crate = new Sprite()
    {
-      class = Scenery;
+      class = Crate;
+      type = Scenery;
       isBreakable = false;
       Image = "ToyAssets:tiles";
       Frame = 4;

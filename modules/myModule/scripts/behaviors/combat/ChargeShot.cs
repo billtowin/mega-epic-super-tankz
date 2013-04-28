@@ -119,12 +119,10 @@ function ChargeShotBehavior::createChargeShot(%this, %shotSpeed, %shotLevel)
 
 function ChargeShot::onCollision(%this, %object, %details)
 {
-   if(%object.class $= "Scenery" && %object.isBreakable)
-   {
+   if(%object.type $= "Scenery" && %object.isBreakable) {
       %object.safeDelete();
    }
-   if(%object.class !$= "Wall" && %object.class !$= "Scenery")
-   {
+   if(%object.type !$= "Wall" && %object.type !$= "Scenery") {
       %this.onDeath();
    }
 }

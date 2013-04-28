@@ -3,7 +3,8 @@ function createBarrel(%x_pos, %y_pos)
    // Create the sprite.
    %barrel = new Sprite()
    {
-      class = Scenery;
+      class = Barrel;
+      type = Scenery;
       isBreakable = true;
       Image = "MyModule:woodenBarrelImage";
       BodyType = dynamic;

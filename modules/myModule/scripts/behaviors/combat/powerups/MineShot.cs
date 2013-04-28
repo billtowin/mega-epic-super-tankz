@@ -93,7 +93,7 @@ function MineShotBehavior::createMineShot(%this)
 
 function MineShot::onCollision(%this, %object, %details)
 {
-   if(%object.class $= "Tank"){
+   if(%object.type $= "Vehicle") {
       %this.onDeath();
    }
 }

@@ -3,7 +3,8 @@ function createBarrier(%x_pos, %y_pos, %width, %height, %angle)
    // Create the sprite.
    %barrier = new Sprite()
    {
-      class = "Wall";
+      class = Barrier;
+      type = Wall;
       Image = "ToyAssets:tiles";
       Frame = 15;
       BodyType = static;
