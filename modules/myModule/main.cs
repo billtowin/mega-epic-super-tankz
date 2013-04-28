@@ -66,6 +66,8 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/AI/turret/Turret.cs");
    exec("./scripts/behaviors/AI/smartMine/SmartMine.cs");
    
+   //Teams
+   exec("./scripts/behaviors/team/Team.cs");
    
    %id = %this.getId();
    GlobalActionMap.bindCmd(keyboard, "enter", "", %id @ ".resetMap1();");
@@ -244,6 +246,9 @@ function createPlayer1Tank(%initialFrame, %x_pos, %y_pos, %angle)
    //Weapons
    %chargeShotP1 = ChargeShotBehavior.createInstance();
    %p1Tank.addBehavior(%chargeShotP1);
+   %team1 = TeamBehavior.createInstance();
+   %team1.teamID = 1;
+   %p1Tank.addBehavior(%team1);
    return %p1Tank;
    
 }
@@ -268,5 +273,8 @@ function createPlayer2Tank(%initialFrame, %x_pos, %y_pos, %angle)
    %p2Tank.addBehavior(%controlsP2);
    %chargeShotP2 = ChargeShotBehavior.createInstance();
    %p2Tank.addBehavior(%chargeShotP2);
+   %team2 = TeamBehavior.createInstance();
+   %team2.teamID = 2;
+   %p2Tank.addBehavior(%team2);
    return %p2Tank;
 }

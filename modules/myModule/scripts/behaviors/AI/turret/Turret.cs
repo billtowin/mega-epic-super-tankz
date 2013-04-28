@@ -49,13 +49,12 @@ function TurretBehavior::scanForTargets(%this)
    for(%i = 0; %i < getWordCount(%picked) ; %i++)
    {
       %obj = getWord(%picked,%i);
-      if(%obj.class $= Tank) {
-         if(!%isAnyTargetAvailable) {
-            %isAnyTargetAvailable = true;
-            %possibleTargets = %obj;   
-         } else {
-            %possibleTargets = %possibleTargets SPC %obj;
-         }
+      %teamBehavior = %this.owner.getBehavior("TeamBehavior");
+      %isEnemy = isObject(%teamBehavior) ? %teamBehavior.isEnemy(%obj): true;
+      if(%obj.class $= Tank && %isEnemy) 
+      {
+         %possibleTargets = !%isAnyTargetAvailable ? %obj : %possibleTargets SPC %obj;
+         %isAnyTargetAvailable = true;
       }
    }
    
