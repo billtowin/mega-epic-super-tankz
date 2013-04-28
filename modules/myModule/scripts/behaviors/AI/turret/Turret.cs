@@ -101,11 +101,7 @@ function TurretBehavior::scanForTargets(%this)
          %targetLocalX = getWord(%targetLocalPoint, 0);
          
          %angle = %this.owner.Angle;
-         if(%targetLocalX > 0){
-            %angle -= %this.angleDelta;         
-         } else {
-            %angle += %this.angleDelta;         
-         }
+         %angle = %targetLocalX > 0 ? %angle - %this.angleDelta : %angle + %this.angleDelta;
          
          //Either shoot at acquired target or rotate towards it
          if(mAbs(%targetLocalX) <= %this.targetBuffer) 

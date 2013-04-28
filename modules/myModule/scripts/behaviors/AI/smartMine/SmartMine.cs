@@ -43,11 +43,6 @@ function SmartMineBehavior::scanForTargets(%this)
          }
       }
    }
-   
-   if(%isTankNear && !%isWallBlockingPath) {
-      %this.owner.Visible = true;   
-   } else {
-      %this.owner.Visible = false;
-   }
+   %this.owner.Visible = %isTankNear && !%isWallBlockingPath;
    %this.scanSchedule = %this.schedule(%this.scanUpdateTime, scanForTargets);
 }

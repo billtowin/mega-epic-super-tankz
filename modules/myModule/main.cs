@@ -147,21 +147,13 @@ function MyModule::changeColorP2R(%this)
 
 function MyModule::changeColorP1L(%this)
 {
-   if($p1TankFrame <= 0) {
-      $p1TankFrame = $maxTankFrame - 8;
-   } else {
-      $p1TankFrame =  ($p1TankFrame - 8) % $maxTankFrame;
-   }
+   $p1TankFrame = $p1TankFrame <= 0 ? $maxTankFrame - 8 : ($p1TankFrame - 8) % $maxTankFrame;
    %this.resetMenu();
 }
 
 function MyModule::changeColorP2L(%this)
 {
-   if($p2TankFrame <= 0) {
-      $p2TankFrame = $maxTankFrame - 8;
-   } else {
-      $p2TankFrame =  ($p2TankFrame - 8) % $maxTankFrame;
-   }
+   $p2TankFrame = $p2TankFrame <= 0 ? $maxTankFrame - 8 : ($p2TankFrame - 8) % $maxTankFrame;
    %this.resetMenu();
 }
 

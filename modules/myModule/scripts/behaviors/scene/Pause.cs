@@ -20,15 +20,7 @@ function PauseBehavior::onBehaviorAdd(%this)
 }  
   
 function pauseGame()  
-{  
-   if($isPaused)  
-   {     
-      $timescale=1;       
-   }  
-   else  
-   {  
-      $timescale=0;  
-   }  
-     
+{
+   $timescale = $isPaused ? 1 : 0;     
    $isPaused = !$isPaused;  
 }  
