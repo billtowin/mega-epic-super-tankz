@@ -3,7 +3,8 @@ function createBackground()
    // Create the sprite.
    %background = new Sprite()
    {
-      class = "Wall";
+      class = Background;
+      type = Wall;
       Image = "MyModule:desertBackgroundImage";
       BodyType = static;
       Position = "0 0";

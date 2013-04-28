@@ -8,7 +8,7 @@ function createBasicTank(%initialFrame, %x_pos, %y_pos)
       Image = "myModule:manyTanksImage";
       Frame = %initialFrame;      //Valid Frames: 0 to 7
       FlipY = true;
-      FixedAngle = true;
+      //FixedAngle = true;
       BodyType = dynamic;
       Position = %x_pos SPC %y_pos;
       Size = "5 6";

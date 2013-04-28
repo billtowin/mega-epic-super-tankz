@@ -12,24 +12,23 @@ function MyModule::create( %this )
    // Load GUI profiles.
    exec("./gui/guiProfiles.cs");
    
-   exec("./scripts/menu.cs");
+   exec("./scripts/menus/menu.cs");
    
-   exec("./scripts/effects.cs");
-   exec("./scripts/misc.cs");
+   exec("./scripts/misc/effects.cs");
+   exec("./scripts/misc/misc.cs");
    
-   exec("./scripts/scenery/crate.cs");
-   exec("./scripts/scenery/rock.cs");
-   exec("./scripts/scenery/barrel.cs");
-   exec("./scripts/scenery/barrier.cs");
+   exec("./scripts/mapping/scenery/crate.cs");
+   exec("./scripts/mapping/scenery/rock.cs");
+   exec("./scripts/mapping/scenery/barrel.cs");
+   exec("./scripts/mapping/wall/barrier.cs");
+   exec("./scripts/mapping/powerups/powerup.cs");
+   exec("./scripts/mapping/powerups/powerupSpawner.cs");
 
    exec("./scripts/scenewindow.cs");
    exec("./scripts/scene.cs");
-
    exec("./scripts/background.cs");
-   exec("./scripts/tank.cs");
-   exec("./scripts/powerup.cs");
-   exec("./scripts/powerupSpawner.cs");
-   
+      
+   exec("./scripts/player/tank.cs");
    exec("./scripts/enemy/turret.cs");
    
    //Behaviors
