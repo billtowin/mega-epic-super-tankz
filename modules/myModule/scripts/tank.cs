@@ -11,8 +11,6 @@ function createBasicTank(%initialFrame, %x_pos, %y_pos)
       BodyType = dynamic;
       Position = %x_pos SPC %y_pos;
       Size = "5 6";
-      LinearDamping = 2.0;
-      AngularDamping = 1.0;
       SceneLayer = 1;
       SceneGroup = 1;
       CollisionCallback = true;

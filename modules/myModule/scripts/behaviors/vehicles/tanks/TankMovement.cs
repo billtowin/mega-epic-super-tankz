@@ -11,12 +11,20 @@ if (!isObject(TankMovementBehavior))
    
    %template.addBehaviorField(forwardSpeed, "Speed when moving forward", float, 14);
    %template.addBehaviorField(backwardSpeed, "Speed when moving backward", float, 12);
-   %template.addBehaviorField(linearSpeedMultiplier, "Speed multiplier for moving backwards or forwards", float, 1.0);   
+   %template.addBehaviorField(linearSpeedMultiplier, "Speed multiplier for moving backwards or forwards", float, 1.0);
+   
+   //Damping for making the tank feel heavy when not moving but agile when moving
+   %template.addBehaviorField(linearDampingLow, "Low setting for linear damping", float, 0.0);
+   %template.addBehaviorField(linearDampingHigh, "High setting for linear damping", float, 30.0);
+   %template.addBehaviorField(angularDampingLow, "Low setting for angular damping", float, 0.0);
+   %template.addBehaviorField(angularDampingHigh, "High setting for angular damping", float, 30.0);
 }
 
 function TankMovementBehavior::onBehaviorAdd(%this)
 {   
    %this.idleSound = alxPlay("MyModule:tankIdleSound");
+   %this.owner.LinearDamping = %this.linearDampingHigh;
+   %this.owner.AngularDamping = %this.angularDampingHigh;
 }
 
 function TankMovementBehavior::onBehaviorRemove(%this)
@@ -32,24 +40,28 @@ function TankMovementBehavior::stopSounds(%this)
 
 function TankMovementBehavior::turnLeft(%this)
 {
+   %this.owner.AngularDamping = %this.angularDampingLow;
    %this.owner.setAngularVelocity(%this.turnSpeed * %this.turnSpeedMultiplier);
    %this.turnSchedule = %this.schedule(50, turnLeft);
 }
 
 function TankMovementBehavior::turnRight(%this)
 {
+   %this.owner.AngularDamping = %this.angularDampingLow;
    %this.owner.setAngularVelocity(-%this.turnSpeed * %this.turnSpeedMultiplier);
    %this.turnSchedule = %this.schedule(50, turnRight);
 }
 
 function TankMovementBehavior::stopTurn(%this)
 {
+   %this.owner.AngularDamping = %this.angularDampingHigh;
    cancel(%this.turnSchedule);
    %this.owner.setAngularVelocity(0);
 }
 
 function TankMovementBehavior::stopMovement(%this)
 {
+   %this.owner.LinearDamping = %this.linearDampingHigh;
    cancel(%this.animateSchedule);
    cancel(%this.movementSchedule);
    
@@ -61,6 +73,7 @@ function TankMovementBehavior::stopMovement(%this)
 
 function TankMovementBehavior::updateMovement(%this, %speed)
 {
+   %this.owner.LinearDamping = %this.linearDampingLow;
    %this.owner.setLinearVelocityPolar(%this.owner.Angle - 180, %speed * %this.linearSpeedMultiplier);
    %this.movementSchedule = %this.schedule(50, updateMovement, %speed);
 }
