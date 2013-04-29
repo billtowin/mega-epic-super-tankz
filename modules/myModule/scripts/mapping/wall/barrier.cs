@@ -5,8 +5,7 @@ function createBarrier(%x_pos, %y_pos, %width, %height, %angle)
    {
       class = Barrier;
       type = Wall;
-      Image = "ToyAssets:tiles";
-      Frame = 15;
+      Image = "MyModule:barrierImage";
       BodyType = static;
       Position = %x_pos SPC %y_pos;
       Size = %width SPC %height;
