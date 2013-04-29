@@ -10,6 +10,10 @@ if (!isObject(ProximitySensorBehavior))
    %template.addBehaviorField(rangeRadius, "Range at which to turn visible", int, 12);
    %template.addBehaviorField(detectTypes, "Types of the SceneObjects to detect", string, "Vehicle");
    
+   %template.addBehaviorField(sensePastWalls, "Should the sensor detect objects across walls?", bool, false);
+   
+   //TODO: Currently Sensor calls its update functions every 100ms.
+   // should add an option to only call the functions when the proximity sensor's status changes
 }
 
 function ProximitySensorBehavior::onBehaviorAdd(%this)
@@ -46,12 +50,15 @@ function ProximitySensorBehavior::scanForTargets(%this)
          //Check if there is a wall blocking the path
          %rayPicked = %this.owner.getScene().pickRay(%this.owner.Position, %obj.Position, -1, -1);
          %isWallBlockingPath = false;
-         for(%j = 0; %j < getWordCount(%rayPicked) ; %j++)
+         if(!%this.sensePastWalls)
          {
-            %possibleWall = getWord(%rayPicked,%j);
-            if(%possibleWall.type $= Wall) {
-               %isWallBlockingPath = true;
-               break;
+            for(%j = 0; %j < getWordCount(%rayPicked) ; %j++)
+            {
+               %possibleWall = getWord(%rayPicked,%j);
+               if(%possibleWall.type $= Wall) {
+                  %isWallBlockingPath = true;
+                  break;
+               }
             }
          }
       }
