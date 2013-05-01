@@ -7,11 +7,11 @@ if (!isObject(SpreadShotBehavior))
    %template.description  = "Tank Shotgun/Spread Shot ability";
 
    %template.addBehaviorField(duration, "Duration of Powerup/Ability (negative number for infinite) (in ms)", int, 15000);
-   %template.addBehaviorField(damage, "Damage per shot", int, 12);
+   %template.addBehaviorField(damage, "Damage per shot", int, 10);
 
-   %template.addBehaviorField(speed, "Projectile Speed", float, 70);
+   %template.addBehaviorField(speed, "Projectile Speed", float, 60);
    
-   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 1500);
+   %template.addBehaviorField(reloadTime, "Reload time (in ms)", int, 2000);
    %template.addBehaviorField(spreadShotLifespan, "LifeSpan of Shot (in ms)", int, 400);
    
    %template.addBehaviorField(shotAngles, "Angles of shot from front", string, "0 -8 8 -16 16");
