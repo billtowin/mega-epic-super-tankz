@@ -53,10 +53,14 @@ function createSpeedBoostPowerup(%x_pos, %y_pos)
    return createPowerup(SpeedBoostBehavior, 4, %x_pos, %y_pos);
 }
 
+function createSniperShotPowerup(%x_pos, %y_pos)
+{
+   return createPowerup(SniperShotBehavior, 4, %x_pos, %y_pos);
+}
 
 function createRandomPowerup(%x_pos, %y_pos, %choices)
 {
-   %defaultChoices = "0 1 2 3 4 5";
+   %defaultChoices = "0 1 2 3 4 5 6";
    if(getWordCount(%choices) == 0) {
       %choices = %defaultChoices;   
    }
@@ -76,6 +80,8 @@ function createRandomPowerup(%x_pos, %y_pos, %choices)
          %powerup = createMineShotPowerup(%x_pos, %y_pos);
       case 5:
          %powerup = createSpeedBoostPowerup(%x_pos, %y_pos);
+      case 6:
+         %powerup = createSniperShotPowerup(%x_pos, %y_pos);
       default:
          %powerup = createRandomPowerup(%x_pos, %y_pos, %defaultChoices);
    }
@@ -89,5 +95,5 @@ function createUtilityPowerup(%x_pos, %y_pos)
 
 function createWeaponPowerup(%x_pos, %y_pos)
 {
-   createRandomPowerup(%x_pos, %y_pos,"1 2 4");
+   createRandomPowerup(%x_pos, %y_pos,"1 2 4 6");
 }

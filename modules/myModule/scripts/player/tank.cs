@@ -82,7 +82,7 @@ function Tank::onPowerupPickup(%this, %pickup)
 {
    %this.powerupSound = alxPlay("MyModule:powerupSound");
    %temp = %pickup.powerupBehavior;
-   if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior" || %temp $= "MineShotBehavior")
+   if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior" || %temp $= "MineShotBehavior" || %temp $= "SniperShotBehavior")
    {
       if(isObject(%this.secondaryWeapon))
       {
@@ -95,7 +95,7 @@ function Tank::onPowerupPickup(%this, %pickup)
    
    %powerupInstance = %pickup.powerupBehavior.createInstance();
    %this.addBehavior(%powerupInstance);
-   if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior"|| %temp $= "MineShotBehavior")
+   if(%temp $= "LaserBeamBehavior" || %temp $= "TeleportBehavior" || %temp $= "SpreadShotBehavior"|| %temp $= "MineShotBehavior" || %temp $= "SniperShotBehavior")
    {
       %this.secondaryWeapon = %powerupInstance;
    }

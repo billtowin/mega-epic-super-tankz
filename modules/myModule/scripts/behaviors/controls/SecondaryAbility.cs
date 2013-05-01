@@ -51,4 +51,9 @@ function SecondaryAbilityBehavior::endAbility(%this)
    if (isObject(%laserBeam)) {
       %laserBeam.beam();
    }
+   
+   %sniperShot = %this.owner.getBehavior("SniperShotBehavior");
+   if (isObject(%sniperShot)) {
+      %sniperShot.snipe();
+   }
 }

@@ -48,6 +48,7 @@ function MyModule::create( %this )
    exec("./scripts/behaviors/combat/powerups/LaserBeam.cs");
    exec("./scripts/behaviors/combat/powerups/SpreadShot.cs");
    exec("./scripts/behaviors/combat/powerups/MineShot.cs");
+   exec("./scripts/behaviors/combat/powerups/SniperShot.cs");
    
    //Utility Powerups
    exec("./scripts/behaviors/combat/powerups/Regeneration.cs");
@@ -168,6 +169,17 @@ function MyModule::resetMap1(%this)
    
    myScene.add(createBackground());
    
+   /////////////////////////////TWEAK AND USE AS POWERUP AURA
+   //Decrease tranparency
+   //Change color depending on the powerup (create six particles, one for each powerup?)
+   //Add and remove aura when powerup is picked up? (search for "secondaryKey")
+   %test = new ParticlePlayer();
+   %test.Particle = "ToyAssets:ForceBubble";
+   %test.Position = "15 0";
+   %test.setSizeScale(0.1);
+   %test.setBlendAlpha(1);
+   myScene.add(%test);
+   
    %tankP1 = createPlayer1Tank($p1TankFrame, -45, 0, -90);
    myScene.add(%tankP1.healthBar);
    myScene.add(%tankP1);
@@ -202,7 +214,7 @@ function MyModule::resetMap1(%this)
    
    //Powerups
    myScene.add(createPowerupSpawner(0, 35, "0 3 5"));
-   myScene.add(createPowerupSpawner(0, -35, "1 2 4"));
+   myScene.add(createPowerupSpawner(0, -35, "1 2 4 6"));
    
    // Corner Turrets
    myScene.add(createRandomTurret(47, 47, 16, 130));
